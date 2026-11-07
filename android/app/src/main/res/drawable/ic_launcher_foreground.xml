@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Graduation Cap Mortarboard -->
+    <path
+        android:fillColor="#fbbf24"
+        android:pathData="M54,28 L82,41 L54,54 L26,41 Z"/>
+    <!-- Mortarboard inner shadow -->
+    <path
+        android:fillColor="#d97706"
+        android:pathData="M54,32 L76,41 L54,50 L32,41 Z"/>
+    <!-- Tassel -->
+    <path
+        android:strokeColor="#f59e0b"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M38,44 L38,58 C38,60 34,60 34,58 L34,42"/>
+    <!-- Open Book Base -->
+    <path
+        android:fillColor="#1e293b"
+        android:strokeColor="#38bdf8"
+        android:strokeWidth="1.8"
+        android:pathData="M32,62 C40,62 50,59 54,63 C58,59 68,62 76,62 C80,62 82,64 82,68 L82,80 C82,82 80,84 76,84 C68,84 58,81 54,85 C50,81 40,84 32,84 C28,84 26,82 26,80 L26,68 C26,64 28,62 32,62 Z"/>
+    <!-- Book Spine -->
+    <path
+        android:strokeColor="#38bdf8"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M54,63 L54,85"/>
+    <!-- Center Star -->
+    <path
+        android:fillColor="#f59e0b"
+        android:pathData="M54,67 L55.5,70.5 L59.5,70.5 L56.5,72.8 L57.5,76.5 L54,74.2 L50.5,76.5 L51.5,72.8 L48.5,70.5 L52.5,70.5 Z"/>
+</vector>

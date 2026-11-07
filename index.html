@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>StudyMate - Offline Student Assistant & Planner</title>
+  <meta name="description" content="Minimalist, 100% offline personal student assistant, timetable, and study planner.">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Top Fluid Header -->
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand-group">
+          <div class="brand-mark">📚</div>
+          <div>
+            <h1 class="brand-text-title">StudyMate</h1>
+            <p class="brand-text-sub">Offline Student Assistant</p>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <button id="btn-header-profile" class="btn-liquid btn-liquid-secondary" style="font-size: 0.8rem; padding: 7px 14px;" title="Profile & Settings">
+            👤 <span id="header-user-label">Profile</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Fluid Content Container -->
+    <main class="content-wrapper">
+
+      <!-- ================= 1. INITIAL INTRO & SETUP SCREEN ================= -->
+      <section id="view-intro" class="intro-container">
+        <div class="intro-hero-card">
+          <div class="intro-mascot-wrapper">
+            <div class="mascot-capsule-mini">
+              <img src="People working on Brain Research Insight.png" alt="Brain Research & Insight" class="mascot-img">
+            </div>
+            <div class="mascot-intro-tag">🧠 Brain Research & Study Companion</div>
+          </div>
+          <span class="intro-badge">Personal Setup</span>
+          <h2 class="intro-title">Welcome to StudyMate</h2>
+          <p class="intro-subtitle">Your personal study companion. Everything is stored 100% offline on your device with zero internet required.</p>
+
+          <form id="form-intro-setup" class="intro-form">
+            <!-- Name Field -->
+            <div class="form-field-group">
+              <label for="intro-name" class="field-label">What is your name?</label>
+              <input type="text" id="intro-name" class="input-liquid" placeholder="e.g. Desmond" required autocomplete="name">
+            </div>
+
+            <!-- School Level -->
+            <div class="form-field-group">
+              <label class="field-label">What level of school are you attending?</label>
+              <div class="chip-options-grid" id="school-level-chips">
+                <button type="button" class="select-chip active" data-level="Senior High School (SHS)">Senior High School (SHS)</button>
+                <button type="button" class="select-chip" data-level="Junior High School (JHS)">Junior High School (JHS)</button>
+                <button type="button" class="select-chip" data-level="University / Tertiary">University / Tertiary</button>
+                <button type="button" class="select-chip" data-level="Independent / NovDec">Independent Prep</button>
+              </div>
+            </div>
+
+            <!-- Program / Track -->
+            <div class="form-field-group">
+              <label class="field-label">What is your program or track?</label>
+              <div class="chip-options-grid" id="program-track-chips">
+                <button type="button" class="select-chip active" data-track="General Science">General Science</button>
+                <button type="button" class="select-chip" data-track="General Arts">General Arts</button>
+                <button type="button" class="select-chip" data-track="Business">Business</button>
+                <button type="button" class="select-chip" data-track="Visual Arts">Visual Arts</button>
+                <button type="button" class="select-chip" data-track="Home Economics">Home Economics</button>
+                <button type="button" class="select-chip" data-track="Custom">Custom Subjects</button>
+              </div>
+            </div>
+
+            <!-- Subjects to Include -->
+            <div class="form-field-group">
+              <label for="intro-subjects-input" class="field-label">Your main subjects (comma separated):</label>
+              <input type="text" id="intro-subjects-input" class="input-liquid" value="Core Mathematics, Integrated Science, English Language, Social Studies, Elective Mathematics, Physics, Chemistry, Biology">
+              <span class="field-hint">You can add, edit, or remove subjects anytime later.</span>
+            </div>
+
+            <!-- Daily Prep Goal -->
+            <div class="form-field-group">
+              <label class="field-label">Target daily study / evening prep goal:</label>
+              <div class="chip-options-grid" id="prep-goal-chips">
+                <button type="button" class="select-chip" data-goal="45">45 Minutes</button>
+                <button type="button" class="select-chip active" data-goal="60">1 Hour</button>
+                <button type="button" class="select-chip" data-goal="90">1.5 Hours</button>
+                <button type="button" class="select-chip" data-goal="120">2 Hours</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-start-workspace">
+              Enter My Study Workspace →
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= 2. PERSONAL DASHBOARD (ACTIVE WORKSPACE) ================= -->
+      <section id="view-dashboard" class="dashboard-view" style="display: none;">
+        
+        <!-- Segmented iOS Navigation Control -->
+        <div class="segmented-nav-container">
+          <div class="segmented-nav" id="segmented-nav">
+            <button class="segment-btn active" data-tab="assistant">Assistant</button>
+            <button class="segment-btn" data-tab="timetable">Timetable</button>
+            <button class="segment-btn" data-tab="assignments">Assignments & Tasks</button>
+            <button class="segment-btn" data-tab="goals">Goals & Habits</button>
+            <button class="segment-btn" data-tab="focus">Prep Timer</button>
+            <button class="segment-btn" data-tab="about">About</button>
+          </div>
+        </div>
+
+        <!-- TAB 1: ASSISTANT -->
+        <div id="tab-assistant" class="tab-pane active">
+          <div class="liquid-assistant-card">
+            <div class="assistant-top-row">
+              <h2 class="assistant-user-greeting" id="dash-greeting">Hello, Desmond</h2>
+              <span class="assistant-copilot-tag">✨ Personal Study Copilot</span>
+            </div>
+            <p class="assistant-body-message" id="dash-assistant-msg">
+              Welcome to your personal study hub. All your timetable slots, deadlines, and study streaks will be organized right here.
+            </p>
+
+            <!-- Interactive Animated Study Buddy -->
+            <div class="mascot-companion-card" id="mascot-companion-widget">
+              <div class="mascot-capsule" id="mascot-tap-trigger" title="Tap for study insight!">
+                <img src="People working on Brain Research Insight.png" alt="Brain Research Insight" class="mascot-img" id="assistant-mascot-img">
+                <div class="mascot-tap-hint">Tap me! ⚡</div>
+              </div>
+              <div class="mascot-speech-content">
+                <div class="mascot-speech-header">
+                  <span class="mascot-name-badge">🧠 StudyMate Buddy</span>
+                  <span class="mascot-status-tag" id="companion-status-tag">Deep Focus</span>
+                </div>
+                <div class="mascot-speech-bubble" id="companion-speech-bubble">
+                  <p id="companion-speech-text">“Ready to dive into focused study & insight? Let's build some serious momentum!”</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="assistant-callout-liquid" id="dash-callout-box">
+              <div class="callout-icon-circle" id="dash-callout-icon">📋</div>
+              <div>
+                <div class="callout-heading" id="dash-callout-title">Ready to set up your schedule?</div>
+                <div class="callout-desc" id="dash-callout-desc">You can start by adding your class periods, upcoming homework, or evening prep targets.</div>
+              </div>
+            </div>
+
+            <div class="quick-action-strip">
+              <button id="btn-quick-add-task" class="btn-liquid btn-liquid-primary">+ Add Assignment</button>
+              <button id="btn-quick-add-period" class="btn-liquid btn-liquid-secondary">+ Add Timetable Slot</button>
+              <button id="btn-quick-timer" class="btn-liquid btn-liquid-secondary">Start Prep Timer</button>
+            </div>
+          </div>
+
+          <!-- EXAM HORIZON (WASSCE / TARGET READINESS TRACKER) -->
+          <div class="liquid-section" style="margin-top: 24px;">
+            <div class="horizon-card" id="exam-horizon-card">
+              <div class="horizon-header">
+                <div>
+                  <span class="horizon-eyebrow">📅 EXAM HORIZON</span>
+                  <h3 class="horizon-name" id="horizon-exam-name">WASSCE</h3>
+                </div>
+                <button class="btn-horizon-config" id="btn-config-exam" type="button" title="Set target exam or date">⚙ Configure</button>
+              </div>
+
+              <div class="horizon-days-stat">
+                <span class="horizon-big-num" id="horizon-days-left">--</span>
+                <div class="horizon-days-label-group">
+                  <span class="horizon-days-unit">Days Remaining</span>
+                  <span class="horizon-date-target" id="horizon-target-date-str">Target Date</span>
+                </div>
+              </div>
+
+              <div class="horizon-progress-track">
+                <div class="horizon-progress-bar" id="horizon-progress-fill" style="width: 50%;"></div>
+              </div>
+
+              <div class="horizon-metrics-row">
+                <div class="horizon-metric">
+                  <span class="metric-val" id="horizon-prep-hours">-- hrs</span>
+                  <span class="metric-lbl">Est. Prep Capacity</span>
+                </div>
+                <div class="horizon-metric-divider"></div>
+                <div class="horizon-metric">
+                  <span class="metric-val" id="horizon-weeks-left">-- wks</span>
+                  <span class="metric-lbl">Weeks to Exam</span>
+                </div>
+                <div class="horizon-metric-divider"></div>
+                <div class="horizon-metric">
+                  <span class="metric-val" id="horizon-urgency-tag">On Track</span>
+                  <span class="metric-lbl">Pacing Status</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CLASS READY GUARDIAN (ESSENTIAL KIT CHECKLIST) -->
+          <div class="liquid-section" style="margin-top: 24px;">
+            <div class="kit-card" id="kit-guardian-card">
+              <div class="kit-header-row">
+                <div>
+                  <div class="kit-eyebrow-row">
+                    <span class="kit-badge-shield">🛡️ Anti-Sack Guardian</span>
+                    <span class="kit-status-tag" id="kit-packed-status">0/0 Packed</span>
+                  </div>
+                  <h3 class="kit-title" id="kit-schedule-heading">Tomorrow's Kit Checklist</h3>
+                  <p class="kit-sub" id="kit-schedule-sub">Never get sacked from class for missing graph books, mathsets, or lab gear.</p>
+                </div>
+                <button class="btn-liquid btn-liquid-secondary" style="font-size: 0.74rem; padding: 5px 12px;" id="btn-add-kit-item" type="button">+ Add Kit Item</button>
+              </div>
+
+              <div class="kit-items-list" id="kit-items-container">
+                <!-- Dynamically rendered kit rows -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Urgent / Upcoming Homework Strip -->
+          <div class="liquid-section" style="margin-top: 24px;">
+            <div class="section-header-row">
+              <h3 class="section-title">Upcoming Tasks & Homework</h3>
+              <span id="badge-urgent-count" class="item-tag tag-blue">0 items</span>
+            </div>
+            <div class="liquid-card" id="dash-tasks-container">
+              <!-- Populated or empty state -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: TIMETABLE -->
+        <div id="tab-timetable" class="tab-pane" style="display: none;">
+          <div class="liquid-section">
+            <div class="section-header-row">
+              <div>
+                <h3 class="section-title">Weekly Schedule</h3>
+                <p class="brand-text-sub">Classes, practicals, and evening boarding prep</p>
+              </div>
+              <button id="btn-modal-add-timetable" class="btn-liquid btn-liquid-primary">+ Add Slot</button>
+            </div>
+
+            <!-- Day Selector Pills -->
+            <div class="chip-options-grid" id="timetable-day-chips" style="margin: 6px 0 14px 0;">
+              <button class="select-chip active" data-day="1">Monday</button>
+              <button class="select-chip" data-day="2">Tuesday</button>
+              <button class="select-chip" data-day="3">Wednesday</button>
+              <button class="select-chip" data-day="4">Thursday</button>
+              <button class="select-chip" data-day="5">Friday</button>
+              <button class="select-chip" data-day="6">Saturday</button>
+              <button class="select-chip" data-day="0">Sunday</button>
+            </div>
+
+            <div class="liquid-card" id="timetable-content-card">
+              <!-- Populated timetable slots or clean empty state -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: ASSIGNMENTS & GROUP WORK -->
+        <div id="tab-assignments" class="tab-pane" style="display: none;">
+          <div class="liquid-section">
+            <div class="section-header-row">
+              <div>
+                <h3 class="section-title">Assignments & Group Work</h3>
+                <p class="brand-text-sub">Manage individual tasks and coordinate group members</p>
+              </div>
+              <button id="btn-modal-add-assignment" class="btn-liquid btn-liquid-primary">+ New Task</button>
+            </div>
+
+            <div id="assignments-almost-due-banner" style="display: none;"></div>
+            <div class="chip-options-grid" id="assignment-filter-chips" style="margin: 6px 0 14px 0;">
+              <button class="select-chip active" data-filter="all">All</button>
+              <button class="select-chip" data-filter="pending">To-Do</button>
+              <button class="select-chip" data-filter="group">Group Projects</button>
+              <button class="select-chip" data-filter="completed">Completed</button>
+            </div>
+
+            <div class="liquid-card" id="assignments-content-card">
+              <!-- Populated assignments or clean empty state -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: GOALS & HABITS -->
+        <div id="tab-goals" class="tab-pane" style="display: none;">
+          <div class="liquid-section">
+            <div class="section-header-row">
+              <div>
+                <h3 class="section-title">Daily Goals & Study Habits</h3>
+                <p class="brand-text-sub">Keep track of daily targets and study consistency</p>
+              </div>
+              <button id="btn-modal-add-goal" class="btn-liquid btn-liquid-primary">+ Add Target</button>
+            </div>
+
+            <div class="liquid-card" id="goals-content-card" style="margin-top: 10px;">
+              <!-- Populated goals or clean empty state -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: PREP TIMER -->
+        <div id="tab-focus" class="tab-pane" style="display: none;">
+          <div class="liquid-section">
+            <div class="section-header-row">
+              <div>
+                <h3 class="section-title">Focus & Prep Timer</h3>
+                <p class="brand-text-sub">Offline study sessions with synthesized chime</p>
+              </div>
+            </div>
+
+            <div class="liquid-card" style="text-align: center; padding: 36px 20px;">
+              <!-- Focus Activity Stage (Lottie Vector Animation - Man Repairing Motherboard) -->
+              <div class="timer-mascot-stage">
+                <div class="timer-mascot-capsule" id="timer-mascot-box">
+                  <div id="prep-lottie-stage" class="prep-lottie-stage"></div>
+                  <div class="timer-mascot-overlay-badge" id="timer-mascot-badge">
+                    <span id="timer-mascot-badge-text">Focus Ready</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px;" id="timer-subject-label">General Study</div>
+              <div style="font-size: 3.8rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-primary); line-height: 1;" id="timer-display">25:00</div>
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 8px;" id="timer-mode-name">Focus Session • 5m Rest Scheduled</div>
+
+              <!-- End of Focus / Rest Transition Card -->
+              <div id="timer-rest-card" class="assistant-callout-liquid" style="display: none; max-width: 480px; margin: 18px auto 0 auto; text-align: left;">
+                <div class="callout-icon-circle">☕</div>
+                <div style="flex: 1;">
+                  <div class="callout-heading" id="rest-card-heading">Focus Complete! Time to Recharge.</div>
+                  <div class="callout-desc" id="rest-card-desc">You've completed your study session. Taking a quick break helps retain information.</div>
+                  <div style="display: flex; gap: 8px; margin-top: 10px;">
+                    <button id="btn-start-rest" class="btn-liquid btn-liquid-primary" style="font-size: 0.8rem; padding: 6px 14px;">Start Rest (<span id="rest-duration-text">5m</span>)</button>
+                    <button id="btn-skip-rest" class="btn-liquid btn-liquid-secondary" style="font-size: 0.8rem; padding: 6px 12px;">Skip Break</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5 Presets + Custom Button -->
+              <div class="chip-options-grid" style="justify-content: center; margin: 24px 0 16px 0;" id="timer-preset-chips">
+                <!-- Populated dynamically via app.js -->
+              </div>
+
+              <!-- Controls -->
+              <div style="display: flex; justify-content: center; gap: 14px;">
+                <button id="btn-timer-reset" class="btn-liquid btn-liquid-secondary">Reset</button>
+                <button id="btn-timer-toggle" class="btn-liquid btn-liquid-primary" style="padding: 12px 32px; font-size: 0.95rem;">
+                  <span id="timer-toggle-label">Start Focus</span>
+                </button>
+              </div>
+
+              <div style="margin-top: 24px; font-size: 0.8rem; color: var(--text-secondary);">
+                Today's Total: <strong id="timer-today-mins">0 mins</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: ABOUT US -->
+        <div id="tab-about" class="tab-pane" style="display: none;">
+          <div class="liquid-section">
+
+            <!-- Hero Banner -->
+            <div class="about-hero-banner">
+              <div class="about-hero-icon">🧠</div>
+              <h2 class="about-hero-title">StudyMate</h2>
+              <p class="about-hero-sub">Built with passion by brothers who understand the grind.</p>
+              <div class="about-hero-badges">
+                <span class="item-tag tag-blue">v1.0</span>
+                <span class="item-tag tag-green">100% Offline</span>
+                <span class="item-tag">Open Spirit</span>
+              </div>
+            </div>
+
+            <!-- Mission Card -->
+            <div class="liquid-card about-mission-card" style="margin: 18px 0;">
+              <div class="about-mission-icon">🎯</div>
+              <h3 class="about-section-heading">Our Mission</h3>
+              <p class="about-body-text">StudyMate was born out of one simple frustration — students spending more time managing their study apps than actually studying. We wanted something clean, fast, offline, and genuinely useful. No distractions. No subscriptions. Just focus.</p>
+            </div>
+
+            <!-- Offline Data Vault -->
+            <div class="liquid-card backup-vault-card" style="margin: 18px 0;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <span style="font-size: 1.4rem;">🛡️</span>
+                <div>
+                  <h3 class="about-section-heading" style="margin-bottom: 2px;">Offline Data Vault</h3>
+                  <p class="about-body-text" style="font-size: 0.8rem; margin: 0;">Export your entire schedule, tasks, habits, and kit to a safe JSON file or restore anytime.</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                <button id="btn-about-export-backup" class="btn-liquid btn-liquid-primary" style="font-size: 0.78rem;" type="button">⬇ Export Full Backup (.json)</button>
+                <button id="btn-about-trigger-import" class="btn-liquid btn-liquid-secondary" style="font-size: 0.78rem;" type="button">⬆ Restore from File</button>
+              </div>
+            </div>
+
+            <!-- Developers Section -->
+            <h3 class="about-section-heading" style="margin: 24px 0 14px 0; font-size: 1rem;">👨‍💻 The Team</h3>
+
+            <!-- Dev Card 1 -->
+            <div class="about-dev-card">
+              <div class="about-dev-avatar">D</div>
+              <div class="about-dev-info">
+                <div class="about-dev-name">Desmond</div>
+                <div class="about-dev-role">Co-Founder &amp; Lead Developer</div>
+                <p class="about-dev-bio">The architect behind StudyMate. Desmond handles the core logic, UI systems, and the grand vision of what a student productivity tool should feel like. Ships features fast, thinks deep.</p>
+                <div class="about-dev-tags">
+                  <span class="item-tag tag-blue">JavaScript</span>
+                  <span class="item-tag tag-green">UI/UX</span>
+                  <span class="item-tag">Architecture</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dev Card 2 -->
+            <div class="about-dev-card" style="margin-top: 14px;">
+              <div class="about-dev-avatar" style="background: linear-gradient(135deg, var(--accent-green), #34d399);">B</div>
+              <div class="about-dev-info">
+                <div class="about-dev-name">#Brother</div>
+                <div class="about-dev-role">Co-Founder &amp; Creative Director</div>
+                <p class="about-dev-bio">The creative force. #Brother shapes the product experience, refines interactions, and ensures every detail feels right. If it looks good and feels smooth, that's his fingerprint.</p>
+                <div class="about-dev-tags">
+                  <span class="item-tag tag-green">Design</span>
+                  <span class="item-tag">Product</span>
+                  <span class="item-tag tag-blue">QA</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Built With Section -->
+            <div class="liquid-card" style="margin-top: 20px; padding: 18px 20px;">
+              <h3 class="about-section-heading">🛠️ Built With</h3>
+              <div class="about-tech-grid">
+                <div class="about-tech-item"><span class="about-tech-icon">📄</span><span>HTML5</span></div>
+                <div class="about-tech-item"><span class="about-tech-icon">🎨</span><span>Vanilla CSS</span></div>
+                <div class="about-tech-item"><span class="about-tech-icon">⚡</span><span>Vanilla JS</span></div>
+                <div class="about-tech-item"><span class="about-tech-icon">🎭</span><span>Lottie Animations</span></div>
+                <div class="about-tech-item"><span class="about-tech-icon">💾</span><span>LocalStorage</span></div>
+                <div class="about-tech-item"><span class="about-tech-icon">📱</span><span>PWA Ready</span></div>
+              </div>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="about-footer-note">
+              <p>Made with ❤️ for every student grinding hard. No cloud. No tracking. Just you and your goals.</p>
+              <p style="margin-top: 6px; font-size: 0.78rem; color: var(--text-muted);">StudyMate © 2025 — All rights reserved.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Modal 1: Add Assignment -->
+  <div class="liquid-modal-overlay" id="modal-assignment">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">New Assignment / Project</h3>
+        <button class="modal-close-icon" data-close="modal-assignment">&times;</button>
+      </div>
+
+      <form id="form-add-assignment" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field-group">
+          <label class="field-label">Assignment Title *</label>
+          <input type="text" id="task-title" class="input-liquid" placeholder="e.g. Exercise on Quadratic Equations" required>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="form-field-group" style="flex: 1.2;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <label class="field-label" style="margin-bottom: 0;">Subject *</label>
+              <button type="button" id="btn-toggle-custom-subject" style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+ Type Custom</button>
+            </div>
+            <select id="task-subject-select" class="input-liquid">
+              <option value="" disabled selected>Choose a subject...</option>
+            </select>
+            <input type="text" id="task-subject-custom" class="input-liquid" placeholder="Type custom subject name..." style="display: none; margin-top: 6px;">
+            <input type="hidden" id="task-edit-id" value="">
+          </div>
+          <div class="form-field-group" style="flex: 0.8;">
+            <label class="field-label">Due Date *</label>
+            <input type="date" id="task-due" class="input-liquid" required>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">Type</label>
+            <select id="task-type" class="input-liquid">
+              <option value="individual">Individual Task</option>
+              <option value="group">&#x1F465; Group Project</option>
+            </select>
+          </div>
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">Priority</label>
+            <select id="task-priority" class="input-liquid">
+              <option value="medium">Standard</option>
+              <option value="high">Urgent</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Group Members field (if group) -->
+        <div class="form-field-group" id="group-task-members-field" style="display: none;">
+          <label class="field-label">Group Members (comma separated)</label>
+          <input type="text" id="task-members" class="input-liquid" placeholder="e.g. Kwame, Ama, Kojo">
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Notes &amp; Instructions (Optional)</label>
+          <input type="text" id="task-notes" class="input-liquid" placeholder="Page numbers or teacher instructions">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-assignment">Cancel</button>
+          <button type="submit" class="btn-liquid btn-liquid-primary">Save Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Add Timetable Slot -->
+  <div class="liquid-modal-overlay" id="modal-timetable">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text" id="modal-timetable-title">Add Schedule Slot</h3>
+        <button class="modal-close-icon" data-close="modal-timetable">&times;</button>
+      </div>
+
+      <form id="form-add-timetable" style="display: flex; flex-direction: column; gap: 14px;">
+        <input type="hidden" id="slot-edit-id" value="">
+        <div class="form-field-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+            <label class="field-label" style="margin-bottom: 0;">Subject / Activity *</label>
+            <button type="button" id="btn-toggle-custom-slot-subject" style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+ Type Custom</button>
+          </div>
+          <select id="slot-subject-select" class="input-liquid">
+            <option value="" disabled selected>Choose a subject...</option>
+          </select>
+          <input type="text" id="slot-subject-custom" class="input-liquid" placeholder="Type custom subject or activity..." style="display: none; margin-top: 6px;">
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">Day of Week</label>
+            <select id="slot-day" class="input-liquid">
+              <option value="1">Monday</option>
+              <option value="2">Tuesday</option>
+              <option value="3">Wednesday</option>
+              <option value="4">Thursday</option>
+              <option value="5">Friday</option>
+              <option value="6">Saturday</option>
+              <option value="0">Sunday</option>
+            </select>
+          </div>
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">Category</label>
+            <select id="slot-type" class="input-liquid">
+              <option value="class">Class Period</option>
+              <option value="prep">&#x1F319; Evening Prep</option>
+              <option value="lab">Science / ICT Lab</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">Start Time</label>
+            <input type="time" id="slot-start" class="input-liquid" value="08:00" required>
+          </div>
+          <div class="form-field-group" style="flex: 1;">
+            <label class="field-label">End Time</label>
+            <input type="time" id="slot-end" class="input-liquid" value="08:50" required>
+          </div>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Room or Teacher (Optional)</label>
+          <input type="text" id="slot-room" class="input-liquid" placeholder="e.g. Science Lab 1 - Mr. Mensah">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-timetable">Cancel</button>
+          <button type="submit" id="btn-submit-timetable-slot" class="btn-liquid btn-liquid-primary">Add Slot</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Add Goal / Habit -->
+  <div class="liquid-modal-overlay" id="modal-goal">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">New Target or Habit</h3>
+        <button class="modal-close-icon" data-close="modal-goal">&times;</button>
+      </div>
+
+      <form id="form-add-goal" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field-group">
+          <label class="field-label">Type</label>
+          <select id="goal-type" class="input-liquid">
+            <option value="daily">&#x1F3AF; Today's Goal</option>
+            <option value="habit">&#x1F525; Daily Study Habit (Recurring Streak)</option>
+          </select>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Description *</label>
+          <input type="text" id="goal-desc" class="input-liquid" placeholder="e.g. Solve 5 Past Questions on Trigonometry" required>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Subject</label>
+          <input type="text" id="goal-subject-input" class="input-liquid" placeholder="e.g. Core Mathematics" list="user-subjects-datalist">
+          <datalist id="user-subjects-datalist"></datalist>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-goal">Cancel</button>
+          <button type="submit" class="btn-liquid btn-liquid-primary">Save Target</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Profile & Settings -->
+  <div class="liquid-modal-overlay" id="modal-profile">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">Student Profile &amp; Settings</h3>
+        <button class="modal-close-icon" data-close="modal-profile">&times;</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: var(--bg-page); padding: 14px 16px; border-radius: var(--radius-sm);">
+          <div style="font-size: 0.95rem; font-weight: 700;" id="prof-display-name">Student</div>
+          <div style="font-size: 0.8rem; color: var(--text-secondary);" id="prof-display-track">Track</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;" id="prof-display-subjects">Subjects</div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">Offline Data Vault</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">Safeguard your timetable, assignments, streaks, and kit checklist. Export to a clean JSON file or restore anytime.</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button id="btn-export-backup" class="btn-liquid btn-liquid-secondary" type="button">⬇ Export Data Backup</button>
+            <button id="btn-trigger-import" class="btn-liquid btn-liquid-secondary" type="button">⬆ Restore Backup</button>
+            <input type="file" id="input-backup-file" accept=".json" style="display: none;">
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">Data &amp; Reset</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">You can change your setup or reset to start over.</p>
+          <div style="display: flex; gap: 10px;">
+            <button id="btn-edit-setup" class="btn-liquid btn-liquid-secondary">Edit Setup Options</button>
+            <button id="btn-reset-all" class="btn-liquid btn-liquid-secondary" style="color: var(--accent-red);">Clear All Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Custom Timer Preset -->
+  <div class="liquid-modal-overlay" id="modal-custom-timer">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">Create Custom Focus &amp; Rest Time</h3>
+        <button class="modal-close-icon" data-close="modal-custom-timer">&times;</button>
+      </div>
+
+      <form id="form-custom-timer" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field-group">
+          <label class="field-label">Focus / Study Duration (Minutes) *</label>
+          <input type="number" id="custom-study-mins" class="input-liquid" placeholder="e.g. 50" min="1" max="240" required value="50">
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Rest / Break Duration (Minutes)</label>
+          <input type="number" id="custom-rest-mins" class="input-liquid" placeholder="e.g. 10" min="1" max="60" required value="10">
+          <span class="field-hint">Auto-calculated to ~20% of study time, but you can customize it.</span>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Label / Name (Optional)</label>
+          <input type="text" id="custom-timer-label" class="input-liquid" placeholder="e.g. 50m Deep Review">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-custom-timer">Cancel</button>
+          <button type="submit" class="btn-liquid btn-liquid-primary">Save Custom Preset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 6: Configure Exam Target -->
+  <div class="liquid-modal-overlay" id="modal-exam-target">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">Configure Target Exam</h3>
+        <button class="modal-close-icon" data-close="modal-exam-target">&times;</button>
+      </div>
+
+      <form id="form-exam-target" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field-group">
+          <label class="field-label">Exam Name *</label>
+          <input type="text" id="target-exam-name" class="input-liquid" placeholder="e.g. WASSCE, Internal Mocks, Nov/Dec" required>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Target Exam Date *</label>
+          <input type="date" id="target-exam-date" class="input-liquid" required>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Daily Study Target (Hours)</label>
+          <input type="number" id="target-exam-hours" class="input-liquid" min="1" max="12" step="0.5" value="3" required>
+          <span class="field-hint">Calculates estimated prep capacity until exam day.</span>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-exam-target">Cancel</button>
+          <button type="submit" class="btn-liquid btn-liquid-primary">Save Exam Target</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 7: Add Custom Kit Item -->
+  <div class="liquid-modal-overlay" id="modal-kit-item">
+    <div class="liquid-modal-content">
+      <div class="modal-header-row">
+        <h3 class="modal-title-text">Add Essential Kit Item</h3>
+        <button class="modal-close-icon" data-close="modal-kit-item">&times;</button>
+      </div>
+
+      <form id="form-kit-item" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field-group">
+          <label class="field-label">Kit Item Description *</label>
+          <input type="text" id="kit-input-name" class="input-liquid" placeholder="e.g. Graph Book, Casio fx-991, Drawing Board" required>
+        </div>
+
+        <div class="form-field-group">
+          <label class="field-label">Relevant Subject / Period (Optional)</label>
+          <input type="text" id="kit-input-subject" class="input-liquid" placeholder="e.g. Core Mathematics, Chemistry" list="user-subjects-datalist">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+          <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-kit-item">Cancel</button>
+          <button type="submit" class="btn-liquid btn-liquid-primary">Add Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Task Completion Celebration Overlay (Lottie Successfully Done) -->
+  <div id="celebration-modal" class="celebration-overlay" style="display: none;">
+    <div class="celebration-card">
+      <div id="celebration-lottie" class="celebration-lottie-box"></div>
+      <h3 class="celebration-title">Task Completed! 🎉</h3>
+      <p class="celebration-desc" id="celebration-task-title">Great work on finishing your task.</p>
+      <button type="button" class="btn-liquid btn-liquid-primary" style="margin-top: 14px; padding: 7px 22px; font-size: 0.85rem;" id="btn-close-celebration">Continue</button>
+    </div>
+  </div>
+
+  <!-- Offline Lottie Vector Animation Engine -->
+  <script src="lottie.min.js"></script>
+  <!-- Core JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
