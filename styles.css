@@ -8,12 +8,12 @@
   --bg-page: #f8fafc;
   --bg-page-secondary: #f1f5f9;
 
-  /* Frosted Glassmorphic Cards (iPhone Liquidity) */
-  --glass-card: rgba(255, 255, 255, 0.75);
-  --glass-card-elevated: rgba(255, 255, 255, 0.9);
-  --glass-card-subtle: rgba(255, 255, 255, 0.5);
-  --glass-blur: blur(28px) saturate(190%);
-  --surface-card: rgba(255, 255, 255, 0.88);
+  /* Frosted Glassmorphic Cards (Apple Glass Liquidity) */
+  --glass-card: rgba(255, 255, 255, 0.65);
+  --glass-card-elevated: rgba(255, 255, 255, 0.78);
+  --glass-card-subtle: rgba(255, 255, 255, 0.45);
+  --glass-blur: blur(14px) saturate(170%);
+  --surface-card: rgba(255, 255, 255, 0.70);
   --surface-hover: rgba(15, 23, 42, 0.04);
 
   /* Hairline Borders */
@@ -85,17 +85,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fluid Liquid Layout (Full Screen, Adaptive & Spaced Out) */
+/* Fluid Liquid Layout with Achimota Administration Backdrop */
 .app-layout {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(at 10% 10%, rgba(226, 232, 240, 0.7) 0px, transparent 60%),
-    radial-gradient(at 90% 90%, rgba(241, 245, 249, 0.8) 0px, transparent 60%),
-    var(--bg-page);
+  background-image: url('achimota_admin.jpg');
+  background-size: cover;
+  background-position: center top;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  isolation: isolate;
+}
+
+.app-layout::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(248, 250, 252, 0.22);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .content-wrapper {
@@ -1379,18 +1390,16 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(248, 250, 252, 0.82) 50%,
-    rgba(241, 245, 249, 0.88) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(248, 250, 252, 0.82) 50%,
+      rgba(241, 245, 249, 0.88) 100%);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   z-index: 1;
 }
 
-.about-hero-banner > * {
+.about-hero-banner>* {
   position: relative;
   z-index: 2;
 }
@@ -1913,6 +1922,7 @@ body {
   .day-full {
     display: none;
   }
+
   .day-short {
     display: inline;
   }
@@ -1928,6 +1938,7 @@ body,
 
 /* 2. Mobile Responsive Rules (Screens <= 640px) */
 @media (max-width: 640px) {
+
   /* Layout & Spacing */
   .content-wrapper {
     padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
@@ -2532,6 +2543,7 @@ body,
   .day-full {
     display: none;
   }
+
   .day-short {
     display: inline;
   }
@@ -2547,6 +2559,7 @@ body,
 
 /* 2. Mobile Responsive Rules (Screens <= 640px) */
 @media (max-width: 640px) {
+
   /* Layout & Spacing */
   .content-wrapper {
     padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
@@ -2834,4 +2847,3 @@ body,
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
-
