@@ -1,83 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- 1. Achimota Torch Flame of Learning -->
-    <path
-        android:fillColor="#f59e0b"
-        android:pathData="M54,20 C51,26 47,30 49,34 C50,38 54,39 54,39 C54,39 58,38 59,34 C61,30 57,26 54,20 Z"/>
+    <!-- 1. Achimota Heraldic Shield (White Fill with Crisp Contour) -->
     <path
         android:fillColor="#ffffff"
-        android:pathData="M54,26 C52.5,30 50,33 51.5,36 C52.5,38 54,38 54,38 C54,38 55.5,38 56.5,36 C58,33 55.5,30 54,26 Z"/>
-    <path
-        android:fillColor="#d97706"
-        android:pathData="M50,39 L58,39 L56,43 L52,43 Z"/>
+        android:strokeColor="#0f172a"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M29,22 L79,22 L79,38 C79,62 79,66 54,80 C29,66 29,62 29,38 Z"/>
 
-    <!-- 2. Achimota Heraldic Shield Outer Frame -->
-    <path
-        android:fillColor="#f59e0b"
-        android:pathData="M31,43 L77,43 C77,43 82,62 82,73 C82,86 54,95 54,95 C54,95 26,86 26,73 C26,62 31,43 31,43 Z"/>
-
-    <!-- Inner Shield Body -->
+    <!-- Shield Top Header Bar -->
     <path
         android:fillColor="#0f172a"
-        android:pathData="M33,45 L75,45 C75,45 80,63 80,73 C80,84 54,93 54,93 C54,93 28,84 28,73 C28,63 33,45 33,45 Z"/>
+        android:pathData="M29,22 L79,22 L79,30 L29,30 Z"/>
 
-    <!-- Shield Header Bar -->
+    <!-- 2. The Famous Aggrey Piano Keys (Triangular Tips) -->
+    <!-- Key 1 -->
     <path
-        android:fillColor="#1e293b"
-        android:pathData="M34,46 L74,46 L74,51 L34,51 Z"/>
+        android:fillColor="#0f172a"
+        android:pathData="M35.8,30 L43.1,30 L43.1,58 L39.5,62.3 L35.8,58 Z"/>
 
-    <!-- 3. Achimota Piano Keyboard (Aggrey's Harmony Keys) -->
-    <!-- Keyboard Housing Plate -->
+    <!-- Key 2 -->
     <path
-        android:fillColor="#ffffff"
-        android:pathData="M36,53 L72,53 L72,71 L36,71 Z"/>
+        android:fillColor="#0f172a"
+        android:pathData="M50.4,30 L57.7,30 L57.7,58 L54.0,62.3 L50.4,58 Z"/>
+
+    <!-- Key 3 -->
+    <path
+        android:fillColor="#0f172a"
+        android:pathData="M64.9,30 L72.2,30 L72.2,58 L68.6,62.3 L64.9,58 Z"/>
 
     <!-- Key Separator Lines -->
     <path
-        android:strokeColor="#94a3b8"
-        android:strokeWidth="0.6"
-        android:pathData="M41,53 L41,71 M46,53 L46,71 M51,53 L51,71 M57,53 L57,71 M62,53 L62,71 M67,53 L67,71"/>
+        android:strokeColor="#0f172a"
+        android:strokeWidth="0.8"
+        android:pathData="M54,62.3 L54,78 M73.2,30 L73.2,54 M60.5,30 L60.5,72 M47.5,30 L47.5,72 M34.8,30 L34.8,54"/>
 
-    <!-- Black Piano Keys -->
-    <!-- Group of 2 -->
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M39.5,53 L42.5,53 L42.5,63 L39.5,63 Z"/>
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M44.5,53 L47.5,53 L47.5,63 L44.5,63 Z"/>
-
-    <!-- Group of 3 -->
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M54.5,53 L57.5,53 L57.5,63 L54.5,63 Z"/>
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M59.5,53 L62.5,53 L62.5,63 L59.5,63 Z"/>
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M64.5,53 L67.5,53 L67.5,63 L64.5,63 Z"/>
-
-    <!-- 4. Open Book of Wisdom -->
+    <!-- 3. Curving Base Motto Banner Ribbon -->
     <path
         android:fillColor="#f8fafc"
-        android:strokeColor="#f59e0b"
-        android:strokeWidth="0.7"
-        android:pathData="M46,76 C49,76 52,74 54,76 C56,74 59,76 62,76 L62,81 C59,81 56,79 54,81 C52,79 49,81 46,81 Z"/>
-    <!-- Miniature Black Star -->
-    <path
-        android:fillColor="#0f172a"
-        android:pathData="M54,77 L54.6,78.5 L56.2,78.5 L54.9,79.5 L55.4,81 L54,80 L52.6,81 L53.1,79.5 L51.8,78.5 L53.4,78.5 Z"/>
-
-    <!-- 5. Heraldic Ribbon Scroll -->
-    <path
-        android:fillColor="#ffffff"
-        android:strokeColor="#d97706"
-        android:strokeWidth="0.8"
-        android:pathData="M29,88 Q54,92 79,88 L77,93 Q54,97 31,93 Z"/>
+        android:strokeColor="#0f172a"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M25,82 Q54,88 83,82 L81,87 Q54,93 27,87 Z"/>
 </vector>
