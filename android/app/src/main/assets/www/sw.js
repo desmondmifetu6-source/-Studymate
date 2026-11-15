@@ -1,6 +1,6 @@
 // StudyMate GH - Offline-First Service Worker Cache
-// v4: Master Craft Upgrade — Exam Horizon & Anti-Sack Kit Guardian
-const CACHE_NAME = 'studymate-gh-v4';
+// v5: Achimota Heritage Frosted Glass Edition
+const CACHE_NAME = 'studymate-gh-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -12,7 +12,8 @@ const ASSETS_TO_CACHE = [
   './man-repairing-motherboard.json',
   './notification.json',
   './successfully-done.json',
-  './People working on Brain Research Insight.png'
+  './People working on Brain Research Insight.png',
+  './achimota_admin.jpg'
 ];
 
 // Install Event: pre-cache all core app files

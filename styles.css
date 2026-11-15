@@ -1360,12 +1360,58 @@ body {
    ================================================================ */
 
 .about-hero-banner {
+  position: relative;
   text-align: center;
-  padding: 28px 20px 22px;
+  padding: 44px 24px 34px;
   background: var(--surface-card);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  margin-bottom: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-image: url('achimota_admin.jpg');
+  background-size: cover;
+  background-position: center 36%;
+  background-repeat: no-repeat;
+}
+
+.about-hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(248, 250, 252, 0.82) 50%,
+    rgba(241, 245, 249, 0.88) 100%
+  );
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  z-index: 1;
+}
+
+.about-hero-banner > * {
+  position: relative;
+  z-index: 2;
+}
+
+.about-hero-crest {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.about-crest-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s ease;
+}
+
+.about-crest-img:hover {
+  transform: scale(1.06) rotate(-2deg);
 }
 
 .about-hero-icon {
