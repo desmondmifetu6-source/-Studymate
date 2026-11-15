@@ -1,4 +1,4 @@
-﻿package com.studymate.gh;
+package com.studymate.gh;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

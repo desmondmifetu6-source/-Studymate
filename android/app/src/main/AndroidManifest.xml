@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.studymate.gh">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions: Offline storage and vibration for focus bell/haptics -->
     <uses-permission android:name="android.permission.VIBRATE" />
