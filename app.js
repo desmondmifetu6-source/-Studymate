@@ -1556,6 +1556,27 @@
       }
     });
 
+    // Standalone APK installer handling
+    const btnInstallHeader = document.getElementById('btn-install-apk');
+    if (btnInstallHeader && window.location.protocol === 'file:') {
+      // Running inside the native Android APK wrapper
+      btnInstallHeader.style.display = 'none';
+    }
+
+    const downloadLinks = document.querySelectorAll('#modal-btn-download-apk, #btn-download-apk-direct');
+    downloadLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const originalText = link.innerHTML;
+        link.innerHTML = '<span>⏳</span> Starting Download...';
+        setTimeout(() => {
+          link.innerHTML = '<span>✅</span> APK Downloading! Open to Install';
+          setTimeout(() => {
+            link.innerHTML = originalText;
+          }, 4500);
+        }, 1200);
+      });
+    });
+
     // Modal Openers
     const btnModalAddTimetable = document.getElementById('btn-modal-add-timetable');
     if (btnModalAddTimetable) {

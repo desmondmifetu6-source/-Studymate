@@ -1842,6 +1842,25 @@ body {
 }
 
 /* ==========================================================================
+   STANDALONE APK INSTALLER STYLES
+   ========================================================================== */
+.install-apk-card {
+  margin: 18px 0;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg, 16px);
+}
+
+@media (max-width: 480px) {
+  #btn-install-apk .btn-apk-label {
+    display: none;
+  }
+  #btn-install-apk {
+    padding: 7px 10px !important;
+  }
+}
+
+
+/* ==========================================================================
    EXAM HORIZON (WASSCE / EXAM READINESS TRACKER) - Zero Neon, Pure Craft
    ========================================================================== */
 .horizon-card {
@@ -2131,3 +2150,22 @@ body {
   margin: 18px 0;
   padding: 22px 24px;
 }
+
+/* ==========================================================================
+   STANDALONE APK INSTALLER STYLES
+   ========================================================================== */
+.install-apk-card {
+  margin: 18px 0;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg, 16px);
+}
+
+@media (max-width: 480px) {
+  #btn-install-apk .btn-apk-label {
+    display: none;
+  }
+  #btn-install-apk {
+    padding: 7px 10px !important;
+  }
+}
+

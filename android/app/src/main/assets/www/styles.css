@@ -1840,3 +1840,332 @@ body {
   margin: 18px 0;
   padding: 22px 24px;
 }
+
+/* ==========================================================================
+   STANDALONE APK INSTALLER STYLES
+   ========================================================================== */
+.install-apk-card {
+  margin: 18px 0;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg, 16px);
+}
+
+@media (max-width: 480px) {
+  #btn-install-apk .btn-apk-label {
+    display: none;
+  }
+  #btn-install-apk {
+    padding: 7px 10px !important;
+  }
+}
+
+
+/* ==========================================================================
+   EXAM HORIZON (WASSCE / EXAM READINESS TRACKER) - Zero Neon, Pure Craft
+   ========================================================================== */
+.horizon-card {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.horizon-card:hover {
+  background: var(--surface-card);
+  box-shadow: var(--shadow-elevated);
+}
+
+.horizon-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.horizon-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.horizon-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-top: 3px;
+}
+
+.btn-horizon-config {
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-horizon-config:hover {
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text-primary);
+  border-color: rgba(15, 23, 42, 0.16);
+}
+
+.horizon-days-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 2px;
+}
+
+.horizon-big-num {
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.horizon-days-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.horizon-days-unit {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.horizon-date-target {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.horizon-progress-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(15, 23, 42, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.horizon-progress-bar {
+  height: 100%;
+  background: #0f172a;
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.horizon-metrics-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.horizon-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-lbl {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.horizon-metric-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================================================================
+   CLASS READY GUARDIAN (ESSENTIAL KIT CHECKLIST) - Never get sacked
+   ========================================================================== */
+.kit-card {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition-smooth);
+}
+
+.kit-card:hover {
+  background: var(--surface-card);
+  box-shadow: var(--shadow-elevated);
+}
+
+.kit-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.kit-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.kit-badge-shield {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  background: var(--tag-bg-blue);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.kit-status-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(15, 23, 42, 0.05);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-smooth);
+}
+
+.kit-status-tag.all-packed {
+  background: var(--tag-bg-green);
+  color: var(--tag-text-green);
+}
+
+.kit-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.kit-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+
+.kit-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kit-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.kit-item-row:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.kit-item-row.packed {
+  opacity: 0.6;
+  background: rgba(248, 250, 252, 0.6);
+}
+
+.kit-item-row.packed .kit-item-name {
+  text-decoration: line-through;
+}
+
+.kit-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.kit-item-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.kit-item-subject-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   OFFLINE DATA VAULT & BACKUP STYLES
+   ========================================================================== */
+.backup-vault-card {
+  margin: 18px 0;
+  padding: 22px 24px;
+}
+
+/* ==========================================================================
+   STANDALONE APK INSTALLER STYLES
+   ========================================================================== */
+.install-apk-card {
+  margin: 18px 0;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg, 16px);
+}
+
+@media (max-width: 480px) {
+  #btn-install-apk .btn-apk-label {
+    display: none;
+  }
+  #btn-install-apk {
+    padding: 7px 10px !important;
+  }
+}
+

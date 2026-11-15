@@ -3,6 +3,7 @@ $path = "C:\Users\LENOVO\Desktop\StudyPulse"
 
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://127.0.0.1:$port/")
+$listener.Prefixes.Add("http://localhost:$port/")
 $listener.Start()
 Write-Output "StudyMate Server running at http://127.0.0.1:$port/"
 
@@ -35,6 +36,10 @@ try {
                 elseif ($ext -eq ".webm") { $mime = "video/webm" }
                 elseif ($ext -eq ".mp4") { $mime = "video/mp4" }
                 elseif ($ext -eq ".webp") { $mime = "image/webp" }
+                elseif ($ext -eq ".apk") {
+                    $mime = "application/vnd.android.package-archive"
+                    $response.AddHeader("Content-Disposition", "attachment; filename=StudyMate.apk")
+                }
 
                 $response.ContentType = $mime
                 $response.ContentLength64 = $bytes.Length

@@ -26,6 +26,10 @@
         </div>
 
         <div class="header-controls">
+          <button id="btn-install-apk" class="btn-liquid btn-liquid-primary" data-open-modal="modal-install-apk" style="font-size: 0.8rem; padding: 7px 12px; display: inline-flex; align-items: center; gap: 6px;" title="Install Standalone Android APK">
+            <span>📱</span>
+            <span class="btn-apk-label">Install App</span>
+          </button>
           <button id="btn-header-profile" class="btn-liquid btn-liquid-secondary" style="font-size: 0.8rem; padding: 7px 14px;" title="Profile & Settings">
             👤 <span id="header-user-label">Profile</span>
           </button>
@@ -387,6 +391,47 @@
               <div class="about-mission-icon">🎯</div>
               <h3 class="about-section-heading">Our Mission</h3>
               <p class="about-body-text">StudyMate was born out of one simple frustration — students spending more time managing their study apps than actually studying. We wanted something clean, fast, offline, and genuinely useful. No distractions. No subscriptions. Just focus.</p>
+            </div>
+
+            <!-- Native Android App Install Card -->
+            <div class="liquid-card install-apk-card" style="margin: 18px 0; border: 1.5px solid rgba(59, 130, 246, 0.3); background: linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(255, 255, 255, 0.95));">
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <div style="width: 48px; height: 48px; border-radius: 14px; background: #0f172a; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; box-shadow: 0 4px 12px rgba(15,23,42,0.15); flex-shrink: 0;">
+                    🤖
+                  </div>
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <h3 class="about-section-heading" style="margin: 0; font-size: 1.05rem;">StudyMate for Android</h3>
+                      <span class="item-tag tag-blue" style="font-size: 0.7rem; padding: 2px 8px;">Official APK</span>
+                    </div>
+                    <p class="about-body-text" style="font-size: 0.82rem; margin: 4px 0 0 0; color: #475569;">
+                      Standalone offline Android app (4.2 MB). Fast, full-screen, with zero data usage.
+                    </p>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <a href="studymate.apk" download="StudyMate.apk" id="btn-download-apk-direct" class="btn-liquid btn-liquid-primary" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 0.85rem; padding: 9px 16px;">
+                    <span>⬇️</span> Download &amp; Install APK
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Quick install guide steps -->
+              <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(15, 23, 42, 0.08); display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
+                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+                  <span>Tap <b>Download &amp; Install</b></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
+                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+                  <span>Tap downloaded notification</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
+                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+                  <span>Tap <b>Install</b> &amp; launch!</span>
+                </div>
+              </div>
             </div>
 
             <!-- Offline Data Vault -->
@@ -766,6 +811,56 @@
           <button type="submit" class="btn-liquid btn-liquid-primary">Add Item</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal 8: Install Standalone Android APK -->
+  <div class="liquid-modal-overlay" id="modal-install-apk">
+    <div class="liquid-modal-content" style="max-width: 480px;">
+      <div class="modal-header-row">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.3rem;">📱</span>
+          <h3 class="modal-title-text">Install StudyMate Android APK</h3>
+        </div>
+        <button class="modal-close-icon" data-close="modal-install-apk">&times;</button>
+      </div>
+
+      <div style="padding: 4px 0 16px 0;">
+        <div style="display: flex; align-items: center; gap: 14px; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
+          <div style="font-size: 2rem;">⚡</div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-obsidian, #0f172a);">Fast &amp; 100% Offline</div>
+            <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">No internet needed. Fullscreen immersive experience. Works natively on your phone.</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin: 18px 0 20px 0;">
+          <a href="studymate.apk" download="StudyMate.apk" id="modal-btn-download-apk" class="btn-liquid btn-liquid-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 13px 20px;">
+            <span>⬇️</span> Download &amp; Install APK (4.2 MB)
+          </a>
+          <p style="font-size: 0.74rem; color: #94a3b8; margin: 8px 0 0 0;">Version 1.0.0 &bull; Standalone Android Build &bull; Android 5.0+</p>
+        </div>
+
+        <h4 style="font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0; color: #1e293b;">How to install on Android in 3 easy steps:</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
+            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+            <div>Tap the blue <b>Download &amp; Install APK</b> button above.</div>
+          </div>
+          <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
+            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+            <div>When finished downloading, tap the notification or open your <b>Downloads</b> folder.</div>
+          </div>
+          <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
+            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+            <div>Tap <b>Install</b> (if prompted, enable <i>Allow from this source</i>). Done!</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; border-top: 1px solid rgba(15, 23, 42, 0.08); padding-top: 12px;">
+        <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-install-apk">Close</button>
+      </div>
     </div>
   </div>
 
