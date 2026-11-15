@@ -73,6 +73,8 @@
 html,
 body {
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   min-height: 100vh;
   background-color: var(--bg-page);
   color: var(--text-primary);
@@ -1850,12 +1852,321 @@ body {
   border-radius: var(--radius-lg, 16px);
 }
 
-@media (max-width: 480px) {
-  #btn-install-apk .btn-apk-label {
+/* ==========================================================================
+   MASTER-TIER MOBILE RESPONSIVE SYSTEM (iOS & Android Native Experience)
+   ========================================================================== */
+
+/* Day selector pill toggle */
+@media (min-width: 641px) {
+  .day-short {
     display: none;
   }
+}
+
+@media (max-width: 640px) {
+  .day-full {
+    display: none;
+  }
+  .day-short {
+    display: inline;
+  }
+}
+
+/* 1. Global Viewport & Flow Guards */
+html,
+body,
+.app-layout {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+/* 2. Mobile Responsive Rules (Screens <= 640px) */
+@media (max-width: 640px) {
+  /* Layout & Spacing */
+  .content-wrapper {
+    padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
+  }
+
+  /* Header */
+  .app-header {
+    padding: 10px 14px !important;
+  }
+
+  .brand-group {
+    gap: 8px !important;
+  }
+
+  .brand-mark {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
+  }
+
+  .brand-text-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-text-sub {
+    display: none !important;
+  }
+
+  .header-controls {
+    gap: 6px !important;
+  }
+
   #btn-install-apk {
-    padding: 7px 10px !important;
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  #btn-install-apk .btn-apk-label {
+    display: none !important;
+  }
+
+  #btn-header-profile {
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  #header-user-label {
+    display: none !important;
+  }
+
+  /* Bottom Navigation: True Mobile App Tab Bar */
+  .segmented-nav-container {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    z-index: 950 !important;
+    pointer-events: auto !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  .segmented-nav {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px)) 2px !important;
+    gap: 2px !important;
+    justify-content: space-around !important;
+    overflow-x: hidden !important;
+  }
+
+  .segment-btn {
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 5px 2px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    border-radius: 8px !important;
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary, #64748b) !important;
+  }
+
+  .segment-btn .nav-icon {
+    font-size: 1.15rem !important;
+    line-height: 1 !important;
+  }
+
+  .segment-btn .nav-label {
+    font-size: 0.64rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+  }
+
+  .segment-btn.active {
+    background: rgba(15, 23, 42, 0.06) !important;
+    color: var(--text-primary, #0f172a) !important;
+    box-shadow: none !important;
+    font-weight: 700 !important;
+  }
+
+  /* Cards & Padding Reduction */
+  .liquid-card,
+  .liquid-assistant-card,
+  .intro-hero-card,
+  .backup-vault-card,
+  .install-apk-card {
+    padding: 16px 14px !important;
+    border-radius: var(--radius-md, 14px) !important;
+  }
+
+  .intro-container {
+    margin: 12px auto !important;
+  }
+
+  .intro-title {
+    font-size: 1.55rem !important;
+  }
+
+  /* Section Headers & Action Rows */
+  .section-header-row {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: flex-start !important;
+  }
+
+  .section-title {
+    font-size: 1.05rem !important;
+  }
+
+  /* WASSCE Horizon Countdown */
+  .horizon-card {
+    padding: 16px 14px !important;
+  }
+
+  .horizon-countdown-row {
+    gap: 10px !important;
+  }
+
+  .horizon-big-num {
+    font-size: 2.7rem !important;
+  }
+
+  .horizon-metrics-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    text-align: center !important;
+    padding-top: 12px !important;
+  }
+
+  .horizon-metric-divider {
+    display: none !important;
+  }
+
+  .metric-val {
+    font-size: 0.8rem !important;
+  }
+
+  .metric-lbl {
+    font-size: 0.62rem !important;
+  }
+
+  /* Anti-Sack Kit Guardian */
+  .kit-card {
+    padding: 16px 14px !important;
+  }
+
+  .kit-item-row {
+    padding: 10px 0 !important;
+    gap: 8px !important;
+  }
+
+  .kit-item-name {
+    font-size: 0.82rem !important;
+  }
+
+  /* Timetable Day Chips */
+  #timetable-day-chips {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 4px 2px 8px 2px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  #timetable-day-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #timetable-day-chips .select-chip {
+    flex: 1 0 auto !important;
+    padding: 7px 11px !important;
+    font-size: 0.78rem !important;
+    text-align: center !important;
+  }
+
+  /* Modals: Convert to iOS / Android Bottom Sheets */
+  .liquid-modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .liquid-modal-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: 86vh !important;
+    overflow-y: auto !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 20px 16px calc(24px + env(safe-area-inset-bottom, 0px)) 16px !important;
+    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.15) !important;
+    transform: translateY(100%) !important;
+  }
+
+  .liquid-modal-overlay.active .liquid-modal-content {
+    transform: translateY(0) !important;
+  }
+
+  /* Inputs: 16px font prevents iOS Safari auto-zoom */
+  .input-liquid,
+  select.input-liquid,
+  textarea.input-liquid {
+    font-size: 16px !important;
+  }
+
+  /* Timer Display */
+  #timer-display {
+    font-size: 3.2rem !important;
+  }
+
+  /* Mascot Companion Card */
+  .mascot-companion-card {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+
+  .mascot-capsule {
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    border-radius: 14px !important;
+  }
+
+  .mascot-speech-text {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* About Tab Cards */
+  .about-hero-banner {
+    padding: 24px 16px !important;
+  }
+
+  .about-hero-title {
+    font-size: 1.6rem !important;
+  }
+
+  .about-dev-card {
+    padding: 16px 14px !important;
+    gap: 12px !important;
+  }
+
+  .about-dev-avatar {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .about-tech-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
@@ -2160,12 +2471,321 @@ body {
   border-radius: var(--radius-lg, 16px);
 }
 
-@media (max-width: 480px) {
-  #btn-install-apk .btn-apk-label {
+/* ==========================================================================
+   MASTER-TIER MOBILE RESPONSIVE SYSTEM (iOS & Android Native Experience)
+   ========================================================================== */
+
+/* Day selector pill toggle */
+@media (min-width: 641px) {
+  .day-short {
     display: none;
   }
+}
+
+@media (max-width: 640px) {
+  .day-full {
+    display: none;
+  }
+  .day-short {
+    display: inline;
+  }
+}
+
+/* 1. Global Viewport & Flow Guards */
+html,
+body,
+.app-layout {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+/* 2. Mobile Responsive Rules (Screens <= 640px) */
+@media (max-width: 640px) {
+  /* Layout & Spacing */
+  .content-wrapper {
+    padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
+  }
+
+  /* Header */
+  .app-header {
+    padding: 10px 14px !important;
+  }
+
+  .brand-group {
+    gap: 8px !important;
+  }
+
+  .brand-mark {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
+  }
+
+  .brand-text-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-text-sub {
+    display: none !important;
+  }
+
+  .header-controls {
+    gap: 6px !important;
+  }
+
   #btn-install-apk {
-    padding: 7px 10px !important;
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  #btn-install-apk .btn-apk-label {
+    display: none !important;
+  }
+
+  #btn-header-profile {
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  #header-user-label {
+    display: none !important;
+  }
+
+  /* Bottom Navigation: True Mobile App Tab Bar */
+  .segmented-nav-container {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    z-index: 950 !important;
+    pointer-events: auto !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  .segmented-nav {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px)) 2px !important;
+    gap: 2px !important;
+    justify-content: space-around !important;
+    overflow-x: hidden !important;
+  }
+
+  .segment-btn {
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 5px 2px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    border-radius: 8px !important;
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary, #64748b) !important;
+  }
+
+  .segment-btn .nav-icon {
+    font-size: 1.15rem !important;
+    line-height: 1 !important;
+  }
+
+  .segment-btn .nav-label {
+    font-size: 0.64rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+  }
+
+  .segment-btn.active {
+    background: rgba(15, 23, 42, 0.06) !important;
+    color: var(--text-primary, #0f172a) !important;
+    box-shadow: none !important;
+    font-weight: 700 !important;
+  }
+
+  /* Cards & Padding Reduction */
+  .liquid-card,
+  .liquid-assistant-card,
+  .intro-hero-card,
+  .backup-vault-card,
+  .install-apk-card {
+    padding: 16px 14px !important;
+    border-radius: var(--radius-md, 14px) !important;
+  }
+
+  .intro-container {
+    margin: 12px auto !important;
+  }
+
+  .intro-title {
+    font-size: 1.55rem !important;
+  }
+
+  /* Section Headers & Action Rows */
+  .section-header-row {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: flex-start !important;
+  }
+
+  .section-title {
+    font-size: 1.05rem !important;
+  }
+
+  /* WASSCE Horizon Countdown */
+  .horizon-card {
+    padding: 16px 14px !important;
+  }
+
+  .horizon-countdown-row {
+    gap: 10px !important;
+  }
+
+  .horizon-big-num {
+    font-size: 2.7rem !important;
+  }
+
+  .horizon-metrics-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    text-align: center !important;
+    padding-top: 12px !important;
+  }
+
+  .horizon-metric-divider {
+    display: none !important;
+  }
+
+  .metric-val {
+    font-size: 0.8rem !important;
+  }
+
+  .metric-lbl {
+    font-size: 0.62rem !important;
+  }
+
+  /* Anti-Sack Kit Guardian */
+  .kit-card {
+    padding: 16px 14px !important;
+  }
+
+  .kit-item-row {
+    padding: 10px 0 !important;
+    gap: 8px !important;
+  }
+
+  .kit-item-name {
+    font-size: 0.82rem !important;
+  }
+
+  /* Timetable Day Chips */
+  #timetable-day-chips {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 4px 2px 8px 2px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  #timetable-day-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #timetable-day-chips .select-chip {
+    flex: 1 0 auto !important;
+    padding: 7px 11px !important;
+    font-size: 0.78rem !important;
+    text-align: center !important;
+  }
+
+  /* Modals: Convert to iOS / Android Bottom Sheets */
+  .liquid-modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .liquid-modal-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: 86vh !important;
+    overflow-y: auto !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 20px 16px calc(24px + env(safe-area-inset-bottom, 0px)) 16px !important;
+    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.15) !important;
+    transform: translateY(100%) !important;
+  }
+
+  .liquid-modal-overlay.active .liquid-modal-content {
+    transform: translateY(0) !important;
+  }
+
+  /* Inputs: 16px font prevents iOS Safari auto-zoom */
+  .input-liquid,
+  select.input-liquid,
+  textarea.input-liquid {
+    font-size: 16px !important;
+  }
+
+  /* Timer Display */
+  #timer-display {
+    font-size: 3.2rem !important;
+  }
+
+  /* Mascot Companion Card */
+  .mascot-companion-card {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+
+  .mascot-capsule {
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    border-radius: 14px !important;
+  }
+
+  .mascot-speech-text {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* About Tab Cards */
+  .about-hero-banner {
+    padding: 24px 16px !important;
+  }
+
+  .about-hero-title {
+    font-size: 1.6rem !important;
+  }
+
+  .about-dev-card {
+    padding: 16px 14px !important;
+    gap: 12px !important;
+  }
+
+  .about-dev-avatar {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .about-tech-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 

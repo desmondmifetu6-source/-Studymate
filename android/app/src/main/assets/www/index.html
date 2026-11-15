@@ -115,12 +115,30 @@
         <!-- Segmented iOS Navigation Control -->
         <div class="segmented-nav-container">
           <div class="segmented-nav" id="segmented-nav">
-            <button class="segment-btn active" data-tab="assistant">Assistant</button>
-            <button class="segment-btn" data-tab="timetable">Timetable</button>
-            <button class="segment-btn" data-tab="assignments">Assignments & Tasks</button>
-            <button class="segment-btn" data-tab="goals">Goals & Habits</button>
-            <button class="segment-btn" data-tab="focus">Prep Timer</button>
-            <button class="segment-btn" data-tab="about">About</button>
+            <button class="segment-btn active" data-tab="assistant">
+              <span class="nav-icon">🧠</span>
+              <span class="nav-label">Assistant</span>
+            </button>
+            <button class="segment-btn" data-tab="timetable">
+              <span class="nav-icon">📅</span>
+              <span class="nav-label">Schedule</span>
+            </button>
+            <button class="segment-btn" data-tab="assignments">
+              <span class="nav-icon">📝</span>
+              <span class="nav-label">Tasks</span>
+            </button>
+            <button class="segment-btn" data-tab="goals">
+              <span class="nav-icon">🎯</span>
+              <span class="nav-label">Goals</span>
+            </button>
+            <button class="segment-btn" data-tab="focus">
+              <span class="nav-icon">⏱️</span>
+              <span class="nav-label">Timer</span>
+            </button>
+            <button class="segment-btn" data-tab="about">
+              <span class="nav-icon">ℹ️</span>
+              <span class="nav-label">About</span>
+            </button>
           </div>
         </div>
 
@@ -255,13 +273,13 @@
 
             <!-- Day Selector Pills -->
             <div class="chip-options-grid" id="timetable-day-chips" style="margin: 6px 0 14px 0;">
-              <button class="select-chip active" data-day="1">Monday</button>
-              <button class="select-chip" data-day="2">Tuesday</button>
-              <button class="select-chip" data-day="3">Wednesday</button>
-              <button class="select-chip" data-day="4">Thursday</button>
-              <button class="select-chip" data-day="5">Friday</button>
-              <button class="select-chip" data-day="6">Saturday</button>
-              <button class="select-chip" data-day="0">Sunday</button>
+              <button class="select-chip active" data-day="1"><span class="day-full">Monday</span><span class="day-short">Mon</span></button>
+              <button class="select-chip" data-day="2"><span class="day-full">Tuesday</span><span class="day-short">Tue</span></button>
+              <button class="select-chip" data-day="3"><span class="day-full">Wednesday</span><span class="day-short">Wed</span></button>
+              <button class="select-chip" data-day="4"><span class="day-full">Thursday</span><span class="day-short">Thu</span></button>
+              <button class="select-chip" data-day="5"><span class="day-full">Friday</span><span class="day-short">Fri</span></button>
+              <button class="select-chip" data-day="6"><span class="day-full">Saturday</span><span class="day-short">Sat</span></button>
+              <button class="select-chip" data-day="0"><span class="day-full">Sunday</span><span class="day-short">Sun</span></button>
             </div>
 
             <div class="liquid-card" id="timetable-content-card">
