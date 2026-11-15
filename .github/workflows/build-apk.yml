@@ -41,7 +41,7 @@ jobs:
       - name: Build Standalone Debug APK
         working-directory: android
         run: |
-          gradle assembleDebug --stacktrace > build.log 2>&1 || (cat build.log | tail -n 120 && exit 1)
+          gradle assembleDebug --stacktrace > build.log 2>&1 || (echo "### ❌ Build Log Failure Details" >> $GITHUB_STEP_SUMMARY && echo '```' >> $GITHUB_STEP_SUMMARY && tail -n 80 build.log >> $GITHUB_STEP_SUMMARY && echo '```' >> $GITHUB_STEP_SUMMARY && cat build.log && exit 1)
 
       - name: Upload Build Log if Failed
         if: failure()
