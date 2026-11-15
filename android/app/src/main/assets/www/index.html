@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -8,17 +9,20 @@
   <meta name="theme-color" content="#f8fafc">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon.svg">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="app-layout">
-    
+
     <!-- Top Fluid Header -->
     <header class="app-header">
       <div class="header-inner">
         <div class="brand-group">
-          <div class="brand-mark">📚</div>
+          <div class="brand-mark" style="padding: 2px;"><img src="icon.svg" alt="Achimota School Badge" style="width: 28px; height: 28px; border-radius: 6px; display: block;"></div>
           <div>
             <h1 class="brand-text-title">StudyMate</h1>
             <p class="brand-text-sub">Offline Student Assistant</p>
@@ -26,11 +30,14 @@
         </div>
 
         <div class="header-controls">
-          <button id="btn-install-apk" class="btn-liquid btn-liquid-primary" data-open-modal="modal-install-apk" style="font-size: 0.8rem; padding: 7px 12px; display: inline-flex; align-items: center; gap: 6px;" title="Install Standalone Android APK">
+          <button id="btn-install-apk" class="btn-liquid btn-liquid-primary" data-open-modal="modal-install-apk"
+            style="font-size: 0.8rem; padding: 7px 12px; display: inline-flex; align-items: center; gap: 6px;"
+            title="Install Standalone Android APK">
             <span>📱</span>
             <span class="btn-apk-label">Install App</span>
           </button>
-          <button id="btn-header-profile" class="btn-liquid btn-liquid-secondary" style="font-size: 0.8rem; padding: 7px 14px;" title="Profile & Settings">
+          <button id="btn-header-profile" class="btn-liquid btn-liquid-secondary"
+            style="font-size: 0.8rem; padding: 7px 14px;" title="Profile & Settings">
             👤 <span id="header-user-label">Profile</span>
           </button>
         </div>
@@ -51,22 +58,27 @@
           </div>
           <span class="intro-badge">Personal Setup</span>
           <h2 class="intro-title">Welcome to StudyMate</h2>
-          <p class="intro-subtitle">Your personal study companion. Everything is stored 100% offline on your device with zero internet required.</p>
+          <p class="intro-subtitle">Your personal study companion. Everything is stored 100% offline on your device with
+            zero internet required.</p>
 
           <form id="form-intro-setup" class="intro-form">
             <!-- Name Field -->
             <div class="form-field-group">
               <label for="intro-name" class="field-label">What is your name?</label>
-              <input type="text" id="intro-name" class="input-liquid" placeholder="e.g. Desmond" required autocomplete="name">
+              <input type="text" id="intro-name" class="input-liquid" placeholder="e.g. Desmond" required
+                autocomplete="name">
             </div>
 
             <!-- School Level -->
             <div class="form-field-group">
               <label class="field-label">What level of school are you attending?</label>
               <div class="chip-options-grid" id="school-level-chips">
-                <button type="button" class="select-chip active" data-level="Senior High School (SHS)">Senior High School (SHS)</button>
-                <button type="button" class="select-chip" data-level="Junior High School (JHS)">Junior High School (JHS)</button>
-                <button type="button" class="select-chip" data-level="University / Tertiary">University / Tertiary</button>
+                <button type="button" class="select-chip active" data-level="Senior High School (SHS)">Senior High
+                  School (SHS)</button>
+                <button type="button" class="select-chip" data-level="Junior High School (JHS)">Junior High School
+                  (JHS)</button>
+                <button type="button" class="select-chip" data-level="University / Tertiary">University /
+                  Tertiary</button>
                 <button type="button" class="select-chip" data-level="Independent / NovDec">Independent Prep</button>
               </div>
             </div>
@@ -87,7 +99,8 @@
             <!-- Subjects to Include -->
             <div class="form-field-group">
               <label for="intro-subjects-input" class="field-label">Your main subjects (comma separated):</label>
-              <input type="text" id="intro-subjects-input" class="input-liquid" value="Core Mathematics, Integrated Science, English Language, Social Studies, Elective Mathematics, Physics, Chemistry, Biology">
+              <input type="text" id="intro-subjects-input" class="input-liquid"
+                value="Core Mathematics, Integrated Science, English Language, Social Studies, Elective Mathematics, Physics, Chemistry, Biology">
               <span class="field-hint">You can add, edit, or remove subjects anytime later.</span>
             </div>
 
@@ -111,7 +124,7 @@
 
       <!-- ================= 2. PERSONAL DASHBOARD (ACTIVE WORKSPACE) ================= -->
       <section id="view-dashboard" class="dashboard-view" style="display: none;">
-        
+
         <!-- Segmented iOS Navigation Control -->
         <div class="segmented-nav-container">
           <div class="segmented-nav" id="segmented-nav">
@@ -150,13 +163,15 @@
               <span class="assistant-copilot-tag">✨ Personal Study Copilot</span>
             </div>
             <p class="assistant-body-message" id="dash-assistant-msg">
-              Welcome to your personal study hub. All your timetable slots, deadlines, and study streaks will be organized right here.
+              Welcome to your personal study hub. All your timetable slots, deadlines, and study streaks will be
+              organized right here.
             </p>
 
             <!-- Interactive Animated Study Buddy -->
             <div class="mascot-companion-card" id="mascot-companion-widget">
               <div class="mascot-capsule" id="mascot-tap-trigger" title="Tap for study insight!">
-                <img src="People working on Brain Research Insight.png" alt="Brain Research Insight" class="mascot-img" id="assistant-mascot-img">
+                <img src="People working on Brain Research Insight.png" alt="Brain Research Insight" class="mascot-img"
+                  id="assistant-mascot-img">
                 <div class="mascot-tap-hint">Tap me! ⚡</div>
               </div>
               <div class="mascot-speech-content">
@@ -165,7 +180,8 @@
                   <span class="mascot-status-tag" id="companion-status-tag">Deep Focus</span>
                 </div>
                 <div class="mascot-speech-bubble" id="companion-speech-bubble">
-                  <p id="companion-speech-text">“Ready to dive into focused study & insight? Let's build some serious momentum!”</p>
+                  <p id="companion-speech-text">“Ready to dive into focused study & insight? Let's build some serious
+                    momentum!”</p>
                 </div>
               </div>
             </div>
@@ -174,7 +190,8 @@
               <div class="callout-icon-circle" id="dash-callout-icon">📋</div>
               <div>
                 <div class="callout-heading" id="dash-callout-title">Ready to set up your schedule?</div>
-                <div class="callout-desc" id="dash-callout-desc">You can start by adding your class periods, upcoming homework, or evening prep targets.</div>
+                <div class="callout-desc" id="dash-callout-desc">You can start by adding your class periods, upcoming
+                  homework, or evening prep targets.</div>
               </div>
             </div>
 
@@ -193,7 +210,8 @@
                   <span class="horizon-eyebrow">📅 EXAM HORIZON</span>
                   <h3 class="horizon-name" id="horizon-exam-name">WASSCE</h3>
                 </div>
-                <button class="btn-horizon-config" id="btn-config-exam" type="button" title="Set target exam or date">⚙ Configure</button>
+                <button class="btn-horizon-config" id="btn-config-exam" type="button" title="Set target exam or date">⚙
+                  Configure</button>
               </div>
 
               <div class="horizon-days-stat">
@@ -237,9 +255,11 @@
                     <span class="kit-status-tag" id="kit-packed-status">0/0 Packed</span>
                   </div>
                   <h3 class="kit-title" id="kit-schedule-heading">Tomorrow's Kit Checklist</h3>
-                  <p class="kit-sub" id="kit-schedule-sub">Never get sacked from class for missing graph books, mathsets, or lab gear.</p>
+                  <p class="kit-sub" id="kit-schedule-sub">Never get sacked from class for missing graph books,
+                    mathsets, or lab gear.</p>
                 </div>
-                <button class="btn-liquid btn-liquid-secondary" style="font-size: 0.74rem; padding: 5px 12px;" id="btn-add-kit-item" type="button">+ Add Kit Item</button>
+                <button class="btn-liquid btn-liquid-secondary" style="font-size: 0.74rem; padding: 5px 12px;"
+                  id="btn-add-kit-item" type="button">+ Add Kit Item</button>
               </div>
 
               <div class="kit-items-list" id="kit-items-container">
@@ -273,13 +293,20 @@
 
             <!-- Day Selector Pills -->
             <div class="chip-options-grid" id="timetable-day-chips" style="margin: 6px 0 14px 0;">
-              <button class="select-chip active" data-day="1"><span class="day-full">Monday</span><span class="day-short">Mon</span></button>
-              <button class="select-chip" data-day="2"><span class="day-full">Tuesday</span><span class="day-short">Tue</span></button>
-              <button class="select-chip" data-day="3"><span class="day-full">Wednesday</span><span class="day-short">Wed</span></button>
-              <button class="select-chip" data-day="4"><span class="day-full">Thursday</span><span class="day-short">Thu</span></button>
-              <button class="select-chip" data-day="5"><span class="day-full">Friday</span><span class="day-short">Fri</span></button>
-              <button class="select-chip" data-day="6"><span class="day-full">Saturday</span><span class="day-short">Sat</span></button>
-              <button class="select-chip" data-day="0"><span class="day-full">Sunday</span><span class="day-short">Sun</span></button>
+              <button class="select-chip active" data-day="1"><span class="day-full">Monday</span><span
+                  class="day-short">Mon</span></button>
+              <button class="select-chip" data-day="2"><span class="day-full">Tuesday</span><span
+                  class="day-short">Tue</span></button>
+              <button class="select-chip" data-day="3"><span class="day-full">Wednesday</span><span
+                  class="day-short">Wed</span></button>
+              <button class="select-chip" data-day="4"><span class="day-full">Thursday</span><span
+                  class="day-short">Thu</span></button>
+              <button class="select-chip" data-day="5"><span class="day-full">Friday</span><span
+                  class="day-short">Fri</span></button>
+              <button class="select-chip" data-day="6"><span class="day-full">Saturday</span><span
+                  class="day-short">Sat</span></button>
+              <button class="select-chip" data-day="0"><span class="day-full">Sunday</span><span
+                  class="day-short">Sun</span></button>
             </div>
 
             <div class="liquid-card" id="timetable-content-card">
@@ -351,32 +378,43 @@
                 </div>
               </div>
 
-              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px;" id="timer-subject-label">General Study</div>
-              <div style="font-size: 3.8rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-primary); line-height: 1;" id="timer-display">25:00</div>
-              <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 8px;" id="timer-mode-name">Focus Session • 5m Rest Scheduled</div>
+              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px;"
+                id="timer-subject-label">General Study</div>
+              <div
+                style="font-size: 3.8rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-primary); line-height: 1;"
+                id="timer-display">25:00</div>
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-top: 8px;"
+                id="timer-mode-name">Focus Session • 5m Rest Scheduled</div>
 
               <!-- End of Focus / Rest Transition Card -->
-              <div id="timer-rest-card" class="assistant-callout-liquid" style="display: none; max-width: 480px; margin: 18px auto 0 auto; text-align: left;">
+              <div id="timer-rest-card" class="assistant-callout-liquid"
+                style="display: none; max-width: 480px; margin: 18px auto 0 auto; text-align: left;">
                 <div class="callout-icon-circle">☕</div>
                 <div style="flex: 1;">
                   <div class="callout-heading" id="rest-card-heading">Focus Complete! Time to Recharge.</div>
-                  <div class="callout-desc" id="rest-card-desc">You've completed your study session. Taking a quick break helps retain information.</div>
+                  <div class="callout-desc" id="rest-card-desc">You've completed your study session. Taking a quick
+                    break helps retain information.</div>
                   <div style="display: flex; gap: 8px; margin-top: 10px;">
-                    <button id="btn-start-rest" class="btn-liquid btn-liquid-primary" style="font-size: 0.8rem; padding: 6px 14px;">Start Rest (<span id="rest-duration-text">5m</span>)</button>
-                    <button id="btn-skip-rest" class="btn-liquid btn-liquid-secondary" style="font-size: 0.8rem; padding: 6px 12px;">Skip Break</button>
+                    <button id="btn-start-rest" class="btn-liquid btn-liquid-primary"
+                      style="font-size: 0.8rem; padding: 6px 14px;">Start Rest (<span
+                        id="rest-duration-text">5m</span>)</button>
+                    <button id="btn-skip-rest" class="btn-liquid btn-liquid-secondary"
+                      style="font-size: 0.8rem; padding: 6px 12px;">Skip Break</button>
                   </div>
                 </div>
               </div>
 
               <!-- 5 Presets + Custom Button -->
-              <div class="chip-options-grid" style="justify-content: center; margin: 24px 0 16px 0;" id="timer-preset-chips">
+              <div class="chip-options-grid" style="justify-content: center; margin: 24px 0 16px 0;"
+                id="timer-preset-chips">
                 <!-- Populated dynamically via app.js -->
               </div>
 
               <!-- Controls -->
               <div style="display: flex; justify-content: center; gap: 14px;">
                 <button id="btn-timer-reset" class="btn-liquid btn-liquid-secondary">Reset</button>
-                <button id="btn-timer-toggle" class="btn-liquid btn-liquid-primary" style="padding: 12px 32px; font-size: 0.95rem;">
+                <button id="btn-timer-toggle" class="btn-liquid btn-liquid-primary"
+                  style="padding: 12px 32px; font-size: 0.95rem;">
                   <span id="timer-toggle-label">Start Focus</span>
                 </button>
               </div>
@@ -408,19 +446,25 @@
             <div class="liquid-card about-mission-card" style="margin: 18px 0;">
               <div class="about-mission-icon">🎯</div>
               <h3 class="about-section-heading">Our Mission</h3>
-              <p class="about-body-text">StudyMate was born out of one simple frustration — students spending more time managing their study apps than actually studying. We wanted something clean, fast, offline, and genuinely useful. No distractions. No subscriptions. Just focus.</p>
+              <p class="about-body-text">StudyMate was born out of one simple frustration — students spending more time
+                managing their study apps than actually studying. We wanted something clean, fast, offline, and
+                genuinely useful. No distractions. No subscriptions. Just focus.</p>
             </div>
 
             <!-- Native Android App Install Card -->
-            <div class="liquid-card install-apk-card" style="margin: 18px 0; border: 1.5px solid rgba(59, 130, 246, 0.3); background: linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(255, 255, 255, 0.95));">
-              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+            <div class="liquid-card install-apk-card"
+              style="margin: 18px 0; border: 1.5px solid rgba(59, 130, 246, 0.3); background: linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(255, 255, 255, 0.95));">
+              <div
+                style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
                 <div style="display: flex; align-items: center; gap: 14px;">
-                  <div style="width: 48px; height: 48px; border-radius: 14px; background: #0f172a; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; box-shadow: 0 4px 12px rgba(15,23,42,0.15); flex-shrink: 0;">
+                  <div
+                    style="width: 48px; height: 48px; border-radius: 14px; background: #0f172a; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; box-shadow: 0 4px 12px rgba(15,23,42,0.15); flex-shrink: 0;">
                     🤖
                   </div>
                   <div>
                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                      <h3 class="about-section-heading" style="margin: 0; font-size: 1.05rem;">StudyMate for Android</h3>
+                      <h3 class="about-section-heading" style="margin: 0; font-size: 1.05rem;">StudyMate for Android
+                      </h3>
                       <span class="item-tag tag-blue" style="font-size: 0.7rem; padding: 2px 8px;">Official APK</span>
                     </div>
                     <p class="about-body-text" style="font-size: 0.82rem; margin: 4px 0 0 0; color: #475569;">
@@ -429,24 +473,30 @@
                   </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
-                  <a href="studymate.apk" download="StudyMate.apk" id="btn-download-apk-direct" class="btn-liquid btn-liquid-primary" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 0.85rem; padding: 9px 16px;">
+                  <a href="studymate.apk" download="StudyMate.apk" id="btn-download-apk-direct"
+                    class="btn-liquid btn-liquid-primary"
+                    style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 0.85rem; padding: 9px 16px;">
                     <span>⬇️</span> Download &amp; Install APK
                   </a>
                 </div>
               </div>
-              
+
               <!-- Quick install guide steps -->
-              <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(15, 23, 42, 0.08); display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
+              <div
+                style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(15, 23, 42, 0.08); display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
-                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+                  <span
+                    style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
                   <span>Tap <b>Download &amp; Install</b></span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
-                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+                  <span
+                    style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
                   <span>Tap downloaded notification</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #64748b;">
-                  <span style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+                  <span
+                    style="font-weight: 700; color: #0f172a; background: rgba(15,23,42,0.08); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
                   <span>Tap <b>Install</b> &amp; launch!</span>
                 </div>
               </div>
@@ -458,12 +508,15 @@
                 <span style="font-size: 1.4rem;">🛡️</span>
                 <div>
                   <h3 class="about-section-heading" style="margin-bottom: 2px;">Offline Data Vault</h3>
-                  <p class="about-body-text" style="font-size: 0.8rem; margin: 0;">Export your entire schedule, tasks, habits, and kit to a safe JSON file or restore anytime.</p>
+                  <p class="about-body-text" style="font-size: 0.8rem; margin: 0;">Export your entire schedule, tasks,
+                    habits, and kit to a safe JSON file or restore anytime.</p>
                 </div>
               </div>
               <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
-                <button id="btn-about-export-backup" class="btn-liquid btn-liquid-primary" style="font-size: 0.78rem;" type="button">⬇ Export Full Backup (.json)</button>
-                <button id="btn-about-trigger-import" class="btn-liquid btn-liquid-secondary" style="font-size: 0.78rem;" type="button">⬆ Restore from File</button>
+                <button id="btn-about-export-backup" class="btn-liquid btn-liquid-primary" style="font-size: 0.78rem;"
+                  type="button">⬇ Export Full Backup (.json)</button>
+                <button id="btn-about-trigger-import" class="btn-liquid btn-liquid-secondary"
+                  style="font-size: 0.78rem;" type="button">⬆ Restore from File</button>
               </div>
             </div>
 
@@ -476,7 +529,9 @@
               <div class="about-dev-info">
                 <div class="about-dev-name">Desmond</div>
                 <div class="about-dev-role">Co-Founder &amp; Lead Developer</div>
-                <p class="about-dev-bio">The architect behind StudyMate. Desmond handles the core logic, UI systems, and the grand vision of what a student productivity tool should feel like. Ships features fast, thinks deep.</p>
+                <p class="about-dev-bio">The architect behind StudyMate. Desmond handles the core logic, UI systems, and
+                  the grand vision of what a student productivity tool should feel like. Ships features fast, thinks
+                  deep.</p>
                 <div class="about-dev-tags">
                   <span class="item-tag tag-blue">JavaScript</span>
                   <span class="item-tag tag-green">UI/UX</span>
@@ -487,11 +542,14 @@
 
             <!-- Dev Card 2 -->
             <div class="about-dev-card" style="margin-top: 14px;">
-              <div class="about-dev-avatar" style="background: linear-gradient(135deg, var(--accent-green), #34d399);">B</div>
+              <div class="about-dev-avatar" style="background: linear-gradient(135deg, var(--accent-green), #34d399);">B
+              </div>
               <div class="about-dev-info">
                 <div class="about-dev-name">#Brother</div>
                 <div class="about-dev-role">Co-Founder &amp; Creative Director</div>
-                <p class="about-dev-bio">The creative force. #Brother shapes the product experience, refines interactions, and ensures every detail feels right. If it looks good and feels smooth, that's his fingerprint.</p>
+                <p class="about-dev-bio">The creative force. #Brother shapes the product experience, refines
+                  interactions, and ensures every detail feels right. If it looks good and feels smooth, that's his
+                  fingerprint.</p>
                 <div class="about-dev-tags">
                   <span class="item-tag tag-green">Design</span>
                   <span class="item-tag">Product</span>
@@ -516,7 +574,8 @@
             <!-- Footer Note -->
             <div class="about-footer-note">
               <p>Made with ❤️ for every student grinding hard. No cloud. No tracking. Just you and your goals.</p>
-              <p style="margin-top: 6px; font-size: 0.78rem; color: var(--text-muted);">StudyMate © 2025 — All rights reserved.</p>
+              <p style="margin-top: 6px; font-size: 0.78rem; color: var(--text-muted);">StudyMate © 2025 — All rights
+                reserved.</p>
             </div>
 
           </div>
@@ -540,19 +599,23 @@
       <form id="form-add-assignment" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="form-field-group">
           <label class="field-label">Assignment Title *</label>
-          <input type="text" id="task-title" class="input-liquid" placeholder="e.g. Exercise on Quadratic Equations" required>
+          <input type="text" id="task-title" class="input-liquid" placeholder="e.g. Exercise on Quadratic Equations"
+            required>
         </div>
 
         <div style="display: flex; gap: 12px;">
           <div class="form-field-group" style="flex: 1.2;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
               <label class="field-label" style="margin-bottom: 0;">Subject *</label>
-              <button type="button" id="btn-toggle-custom-subject" style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+ Type Custom</button>
+              <button type="button" id="btn-toggle-custom-subject"
+                style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+
+                Type Custom</button>
             </div>
             <select id="task-subject-select" class="input-liquid">
               <option value="" disabled selected>Choose a subject...</option>
             </select>
-            <input type="text" id="task-subject-custom" class="input-liquid" placeholder="Type custom subject name..." style="display: none; margin-top: 6px;">
+            <input type="text" id="task-subject-custom" class="input-liquid" placeholder="Type custom subject name..."
+              style="display: none; margin-top: 6px;">
             <input type="hidden" id="task-edit-id" value="">
           </div>
           <div class="form-field-group" style="flex: 0.8;">
@@ -611,12 +674,15 @@
         <div class="form-field-group">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
             <label class="field-label" style="margin-bottom: 0;">Subject / Activity *</label>
-            <button type="button" id="btn-toggle-custom-slot-subject" style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+ Type Custom</button>
+            <button type="button" id="btn-toggle-custom-slot-subject"
+              style="font-size: 0.74rem; color: var(--accent-blue); background: none; border: none; cursor: pointer; font-weight: 600; padding: 0;">+
+              Type Custom</button>
           </div>
           <select id="slot-subject-select" class="input-liquid">
             <option value="" disabled selected>Choose a subject...</option>
           </select>
-          <input type="text" id="slot-subject-custom" class="input-liquid" placeholder="Type custom subject or activity..." style="display: none; margin-top: 6px;">
+          <input type="text" id="slot-subject-custom" class="input-liquid"
+            placeholder="Type custom subject or activity..." style="display: none; margin-top: 6px;">
         </div>
 
         <div style="display: flex; gap: 12px;">
@@ -685,12 +751,14 @@
 
         <div class="form-field-group">
           <label class="field-label">Description *</label>
-          <input type="text" id="goal-desc" class="input-liquid" placeholder="e.g. Solve 5 Past Questions on Trigonometry" required>
+          <input type="text" id="goal-desc" class="input-liquid"
+            placeholder="e.g. Solve 5 Past Questions on Trigonometry" required>
         </div>
 
         <div class="form-field-group">
           <label class="field-label">Subject</label>
-          <input type="text" id="goal-subject-input" class="input-liquid" placeholder="e.g. Core Mathematics" list="user-subjects-datalist">
+          <input type="text" id="goal-subject-input" class="input-liquid" placeholder="e.g. Core Mathematics"
+            list="user-subjects-datalist">
           <datalist id="user-subjects-datalist"></datalist>
         </div>
 
@@ -714,25 +782,31 @@
         <div style="background: var(--bg-page); padding: 14px 16px; border-radius: var(--radius-sm);">
           <div style="font-size: 0.95rem; font-weight: 700;" id="prof-display-name">Student</div>
           <div style="font-size: 0.8rem; color: var(--text-secondary);" id="prof-display-track">Track</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;" id="prof-display-subjects">Subjects</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;" id="prof-display-subjects">
+            Subjects</div>
         </div>
 
         <div>
           <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">Offline Data Vault</h4>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">Safeguard your timetable, assignments, streaks, and kit checklist. Export to a clean JSON file or restore anytime.</p>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">Safeguard your timetable,
+            assignments, streaks, and kit checklist. Export to a clean JSON file or restore anytime.</p>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button id="btn-export-backup" class="btn-liquid btn-liquid-secondary" type="button">⬇ Export Data Backup</button>
-            <button id="btn-trigger-import" class="btn-liquid btn-liquid-secondary" type="button">⬆ Restore Backup</button>
+            <button id="btn-export-backup" class="btn-liquid btn-liquid-secondary" type="button">⬇ Export Data
+              Backup</button>
+            <button id="btn-trigger-import" class="btn-liquid btn-liquid-secondary" type="button">⬆ Restore
+              Backup</button>
             <input type="file" id="input-backup-file" accept=".json" style="display: none;">
           </div>
         </div>
 
         <div>
           <h4 style="font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">Data &amp; Reset</h4>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">You can change your setup or reset to start over.</p>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">You can change your setup or
+            reset to start over.</p>
           <div style="display: flex; gap: 10px;">
             <button id="btn-edit-setup" class="btn-liquid btn-liquid-secondary">Edit Setup Options</button>
-            <button id="btn-reset-all" class="btn-liquid btn-liquid-secondary" style="color: var(--accent-red);">Clear All Data</button>
+            <button id="btn-reset-all" class="btn-liquid btn-liquid-secondary" style="color: var(--accent-red);">Clear
+              All Data</button>
           </div>
         </div>
       </div>
@@ -750,12 +824,14 @@
       <form id="form-custom-timer" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="form-field-group">
           <label class="field-label">Focus / Study Duration (Minutes) *</label>
-          <input type="number" id="custom-study-mins" class="input-liquid" placeholder="e.g. 50" min="1" max="240" required value="50">
+          <input type="number" id="custom-study-mins" class="input-liquid" placeholder="e.g. 50" min="1" max="240"
+            required value="50">
         </div>
 
         <div class="form-field-group">
           <label class="field-label">Rest / Break Duration (Minutes)</label>
-          <input type="number" id="custom-rest-mins" class="input-liquid" placeholder="e.g. 10" min="1" max="60" required value="10">
+          <input type="number" id="custom-rest-mins" class="input-liquid" placeholder="e.g. 10" min="1" max="60"
+            required value="10">
           <span class="field-hint">Auto-calculated to ~20% of study time, but you can customize it.</span>
         </div>
 
@@ -783,7 +859,8 @@
       <form id="form-exam-target" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="form-field-group">
           <label class="field-label">Exam Name *</label>
-          <input type="text" id="target-exam-name" class="input-liquid" placeholder="e.g. WASSCE, Internal Mocks, Nov/Dec" required>
+          <input type="text" id="target-exam-name" class="input-liquid"
+            placeholder="e.g. WASSCE, Internal Mocks, Nov/Dec" required>
         </div>
 
         <div class="form-field-group">
@@ -793,7 +870,8 @@
 
         <div class="form-field-group">
           <label class="field-label">Daily Study Target (Hours)</label>
-          <input type="number" id="target-exam-hours" class="input-liquid" min="1" max="12" step="0.5" value="3" required>
+          <input type="number" id="target-exam-hours" class="input-liquid" min="1" max="12" step="0.5" value="3"
+            required>
           <span class="field-hint">Calculates estimated prep capacity until exam day.</span>
         </div>
 
@@ -816,12 +894,14 @@
       <form id="form-kit-item" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="form-field-group">
           <label class="field-label">Kit Item Description *</label>
-          <input type="text" id="kit-input-name" class="input-liquid" placeholder="e.g. Graph Book, Casio fx-991, Drawing Board" required>
+          <input type="text" id="kit-input-name" class="input-liquid"
+            placeholder="e.g. Graph Book, Casio fx-991, Drawing Board" required>
         </div>
 
         <div class="form-field-group">
           <label class="field-label">Relevant Subject / Period (Optional)</label>
-          <input type="text" id="kit-input-subject" class="input-liquid" placeholder="e.g. Core Mathematics, Chemistry" list="user-subjects-datalist">
+          <input type="text" id="kit-input-subject" class="input-liquid" placeholder="e.g. Core Mathematics, Chemistry"
+            list="user-subjects-datalist">
         </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
@@ -844,39 +924,53 @@
       </div>
 
       <div style="padding: 4px 0 16px 0;">
-        <div style="display: flex; align-items: center; gap: 14px; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
+        <div
+          style="display: flex; align-items: center; gap: 14px; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
           <div style="font-size: 2rem;">⚡</div>
           <div>
-            <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-obsidian, #0f172a);">Fast &amp; 100% Offline</div>
-            <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">No internet needed. Fullscreen immersive experience. Works natively on your phone.</div>
+            <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-obsidian, #0f172a);">Fast &amp; 100%
+              Offline</div>
+            <div style="font-size: 0.78rem; color: #64748b; margin-top: 2px;">No internet needed. Fullscreen immersive
+              experience. Works natively on your phone.</div>
           </div>
         </div>
 
         <div style="text-align: center; margin: 18px 0 20px 0;">
-          <a href="studymate.apk" download="StudyMate.apk" id="modal-btn-download-apk" class="btn-liquid btn-liquid-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 13px 20px;">
+          <a href="studymate.apk" download="StudyMate.apk" id="modal-btn-download-apk"
+            class="btn-liquid btn-liquid-primary"
+            style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 13px 20px;">
             <span>⬇️</span> Download &amp; Install APK (4.2 MB)
           </a>
-          <p style="font-size: 0.74rem; color: #94a3b8; margin: 8px 0 0 0;">Version 1.0.0 &bull; Standalone Android Build &bull; Android 5.0+</p>
+          <p style="font-size: 0.74rem; color: #94a3b8; margin: 8px 0 0 0;">Version 1.0.0 &bull; Standalone Android
+            Build &bull; Android 5.0+</p>
         </div>
 
-        <h4 style="font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0; color: #1e293b;">How to install on Android in 3 easy steps:</h4>
+        <h4 style="font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0; color: #1e293b;">How to install on Android
+          in 3 easy steps:</h4>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
-            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">1</div>
+            <div
+              style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">
+              1</div>
             <div>Tap the blue <b>Download &amp; Install APK</b> button above.</div>
           </div>
           <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
-            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">2</div>
+            <div
+              style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">
+              2</div>
             <div>When finished downloading, tap the notification or open your <b>Downloads</b> folder.</div>
           </div>
           <div style="display: flex; gap: 10px; font-size: 0.8rem; align-items: flex-start;">
-            <div style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">3</div>
+            <div
+              style="min-width: 22px; height: 22px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;">
+              3</div>
             <div>Tap <b>Install</b> (if prompted, enable <i>Allow from this source</i>). Done!</div>
           </div>
         </div>
       </div>
 
-      <div style="display: flex; justify-content: flex-end; border-top: 1px solid rgba(15, 23, 42, 0.08); padding-top: 12px;">
+      <div
+        style="display: flex; justify-content: flex-end; border-top: 1px solid rgba(15, 23, 42, 0.08); padding-top: 12px;">
         <button type="button" class="btn-liquid btn-liquid-secondary" data-close="modal-install-apk">Close</button>
       </div>
     </div>
@@ -888,7 +982,8 @@
       <div id="celebration-lottie" class="celebration-lottie-box"></div>
       <h3 class="celebration-title">Task Completed! 🎉</h3>
       <p class="celebration-desc" id="celebration-task-title">Great work on finishing your task.</p>
-      <button type="button" class="btn-liquid btn-liquid-primary" style="margin-top: 14px; padding: 7px 22px; font-size: 0.85rem;" id="btn-close-celebration">Continue</button>
+      <button type="button" class="btn-liquid btn-liquid-primary"
+        style="margin-top: 14px; padding: 7px 22px; font-size: 0.85rem;" id="btn-close-celebration">Continue</button>
     </div>
   </div>
 
@@ -897,4 +992,5 @@
   <!-- Core JavaScript -->
   <script src="app.js"></script>
 </body>
+
 </html>

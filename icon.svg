@@ -1,38 +1,177 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#020617" />
+    <!-- Background Gradient (Obsidian Apple Glass) -->
+    <linearGradient id="bgObsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c1322" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#050811" />
     </linearGradient>
-    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+
+    <!-- Shield Interior Gradient -->
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Gold Crest Gradient -->
+    <linearGradient id="goldHeritage" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" />
+      <stop offset="35%" stop-color="#f59e0b" />
+      <stop offset="70%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Torch Flame Gradient -->
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
       <stop offset="0%" stop-color="#ef4444" />
-      <stop offset="50%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#10b981" />
+      <stop offset="45%" stop-color="#f59e0b" />
+      <stop offset="90%" stop-color="#fef08a" />
     </linearGradient>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#d97706" />
+
+    <!-- Ribbon Gradient -->
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e2e8f0" />
     </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="shadowFilter" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+
+    <filter id="glowKey" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
   </defs>
 
-  <!-- Background with rounded squircles -->
-  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
-  <rect x="12" y="12" width="488" height="488" rx="116" fill="none" stroke="url(#glowGrad)" stroke-width="8" opacity="0.85" />
-
-  <!-- Graduation Mortarboard / Student Cap -->
-  <path d="M256 110 L410 185 L256 260 L102 185 Z" fill="url(#goldGrad)" filter="drop-shadow(0 10px 20px rgba(245,158,11,0.4))" />
-  <polygon points="256,130 380,185 256,240 132,185" fill="#fde68a" opacity="0.4" />
+  <!-- 1. Master Squircle Icon Container -->
+  <rect width="512" height="512" rx="116" fill="url(#bgObsidian)" />
+  <rect x="8" y="8" width="496" height="496" rx="110" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2" />
   
-  <!-- Tassel -->
-  <path d="M160 214 L160 300 C160 310, 140 310, 140 300 L140 204" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" />
-  <circle cx="150" cy="315" r="10" fill="#f59e0b" />
+  <!-- Subtle Circular Ambient Halo -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="url(#goldHeritage)" stroke-width="1.5" opacity="0.18" stroke-dasharray="6 6" />
 
-  <!-- Open Book Base -->
-  <path d="M140 310 C180 310 230 295 256 315 C282 295 332 310 372 310 C395 310 405 320 405 340 L405 400 C405 410 395 418 372 418 C332 418 282 400 256 422 C230 400 180 418 140 418 C117 418 107 410 107 400 L107 340 C107 320 117 310 140 310 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="8" />
+  <!-- 2. Crest Top: Achimota Torch of Knowledge -->
+  <g id="torch-of-learning" filter="url(#shadowFilter)">
+    <!-- Flame Outer -->
+    <path d="M256 50 C246 72 232 86 238 104 C243 118 256 122 256 122 C256 122 269 118 274 104 C280 86 266 72 256 50 Z" fill="url(#flameGrad)" />
+    <!-- Flame Core -->
+    <path d="M256 68 C250 82 242 92 246 102 C249 110 256 112 256 112 C256 112 263 110 266 102 C270 92 262 82 256 68 Z" fill="#ffffff" opacity="0.85" />
+    <!-- Torch Bowl & Handle -->
+    <path d="M240 118 L272 118 L266 134 L246 134 Z" fill="url(#goldHeritage)" />
+    <path d="M247 134 L265 134 L260 152 L252 152 Z" fill="#b45309" />
+  </g>
 
-  <!-- Book Spine Divider -->
-  <line x1="256" y1="315" x2="256" y2="422" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" />
+  <!-- 3. Heraldic Achimota Shield Outer Frame -->
+  <g id="shield-assembly" filter="url(#shadowFilter)">
+    <!-- Outer Gold Trim -->
+    <path d="M148 144 L364 144 C364 144 388 238 388 296 C388 368 256 420 256 420 C256 420 124 368 124 296 C124 238 148 144 148 144 Z"
+          fill="url(#goldHeritage)" />
 
-  <!-- Ghanaian Black Star in Center -->
-  <polygon points="256,335 264,352 282,352 268,363 273,380 256,369 239,380 244,363 230,352 248,352" fill="#000" stroke="#f59e0b" stroke-width="3" />
+    <!-- Inner Shield Slate Canvas -->
+    <path d="M156 152 L356 152 C356 152 378 240 378 294 C378 358 256 408 256 408 C256 408 134 358 134 294 C134 240 156 152 156 152 Z"
+          fill="url(#shieldBg)" />
+    
+    <!-- Shield Top Accent Bar -->
+    <path d="M164 160 L348 160 C348 160 354 186 354 186 L158 186 C158 186 164 160 164 160 Z"
+          fill="#0f172a" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.5" />
+    <text x="256" y="179" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, serif" font-size="13" font-weight="800" fill="url(#goldHeritage)" letter-spacing="3.5">ACHIMOTA</text>
+
+    <!-- 4. The Iconic Aggrey Piano Keyboard (The Soul of Achimota) -->
+    <!-- Keyboard Housing Container -->
+    <g id="piano-keys" transform="translate(166, 204)">
+      <!-- Keyboard Shadow Plate -->
+      <rect x="0" y="0" width="180" height="96" rx="8" fill="#000000" opacity="0.6" />
+      <rect x="2" y="2" width="176" height="92" rx="6" fill="#090d16" stroke="url(#goldHeritage)" stroke-width="1.5" />
+
+      <!-- 7 White Piano Keys (Full Harmony) -->
+      <!-- Key 1 -->
+      <rect x="6" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="28" y1="6" x2="28" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 2 -->
+      <rect x="30" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="52" y1="6" x2="52" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 3 -->
+      <rect x="54" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="76" y1="6" x2="76" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 4 -->
+      <rect x="78" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="100" y1="6" x2="100" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 5 -->
+      <rect x="102" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="124" y1="6" x2="124" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 6 -->
+      <rect x="126" y="6" width="22" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="148" y1="6" x2="148" y2="90" stroke="#94a3b8" stroke-width="1" />
+      
+      <!-- Key 7 -->
+      <rect x="150" y="6" width="24" height="84" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+
+      <!-- Subtle key bottom highlight / reflection -->
+      <rect x="6" y="80" width="168" height="8" rx="2" fill="rgba(241, 245, 249, 0.4)" />
+
+      <!-- 5 Black Piano Keys (Aggrey's Complement) -->
+      <!-- Group of 2 -->
+      <rect x="20" y="6" width="16" height="52" rx="2" fill="#0f172a" stroke="#000000" stroke-width="1" filter="url(#glowKey)" />
+      <rect x="22" y="8" width="12" height="48" rx="1" fill="#1e293b" />
+      
+      <rect x="44" y="6" width="16" height="52" rx="2" fill="#0f172a" stroke="#000000" stroke-width="1" filter="url(#glowKey)" />
+      <rect x="46" y="8" width="12" height="48" rx="1" fill="#1e293b" />
+
+      <!-- Group of 3 -->
+      <rect x="92" y="6" width="16" height="52" rx="2" fill="#0f172a" stroke="#000000" stroke-width="1" filter="url(#glowKey)" />
+      <rect x="94" y="8" width="12" height="48" rx="1" fill="#1e293b" />
+
+      <rect x="116" y="6" width="16" height="52" rx="2" fill="#0f172a" stroke="#000000" stroke-width="1" filter="url(#glowKey)" />
+      <rect x="118" y="8" width="12" height="48" rx="1" fill="#1e293b" />
+
+      <rect x="140" y="6" width="16" height="52" rx="2" fill="#0f172a" stroke="#000000" stroke-width="1" filter="url(#glowKey)" />
+      <rect x="142" y="8" width="12" height="48" rx="1" fill="#1e293b" />
+    </g>
+
+    <!-- 5. Shield Lower Emblem: Open Book of Wisdom & The Ghanaian Black Star -->
+    <!-- Open Book Pages -->
+    <path d="M216 324 C230 324 246 318 256 324 C266 318 282 324 296 324 C304 324 308 328 308 335 L308 355 C308 359 304 362 296 362 C282 362 266 356 256 363 C246 356 230 362 216 362 C208 362 204 359 204 355 L204 335 C204 328 208 324 216 324 Z"
+          fill="#f8fafc" stroke="url(#goldHeritage)" stroke-width="1.5" />
+    <line x1="256" y1="324" x2="256" y2="363" stroke="#d97706" stroke-width="1.5" />
+
+    <!-- Center Miniature Black Star -->
+    <polygon points="256,330 258.5,336 265,336 260,340 262,346 256,342 250,346 252,340 247,336 253.5,336" fill="#0f172a" />
+  </g>
+
+  <!-- 6. Bottom Heraldic Motto Ribbon: "UT OMNES UNUM SINT" -->
+  <g id="motto-ribbon" filter="url(#shadowFilter)">
+    <!-- Ribbon Tails -->
+    <path d="M108 438 L142 414 L142 452 Z" fill="#cbd5e1" stroke="rgba(15,23,42,0.2)" stroke-width="1" />
+    <path d="M404 438 L370 414 L370 452 Z" fill="#cbd5e1" stroke="rgba(15,23,42,0.2)" stroke-width="1" />
+
+    <!-- Main Ribbon Banner (Curved Parchment) -->
+    <path d="M130 430 Q256 448 382 430 L374 462 Q256 480 138 462 Z"
+          fill="url(#ribbonGrad)" stroke="url(#goldHeritage)" stroke-width="1.8" />
+    
+    <!-- Motto Typography: "UT OMNES UNUM SINT" -->
+    <text x="256" y="454" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Times New Roman', serif"
+          font-size="12.5" font-weight="900" fill="#0f172a" letter-spacing="1.8">
+      UT OMNES UNUM SINT
+    </text>
+  </g>
+
+  <!-- 7. Subtle Golden Laurel Leaves Framing Ribbon Base -->
+  <g id="laurel-wreath" opacity="0.85" fill="url(#goldHeritage)">
+    <!-- Left Leaves -->
+    <path d="M164 416 C158 410 156 400 162 396 C168 400 168 410 164 416 Z" />
+    <path d="M148 396 C142 390 142 380 148 376 C154 380 154 390 148 396 Z" />
+    <path d="M138 372 C134 366 134 356 140 354 C144 358 144 368 138 372 Z" />
+
+    <!-- Right Leaves -->
+    <path d="M348 416 C354 410 356 400 350 396 C344 400 344 410 348 416 Z" />
+    <path d="M364 396 C370 390 370 380 364 376 C358 380 358 390 364 396 Z" />
+    <path d="M374 372 C378 366 378 356 372 354 C368 358 368 368 374 372 Z" />
+  </g>
 </svg>
