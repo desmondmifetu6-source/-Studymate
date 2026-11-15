@@ -5,7 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch: # Allows manual trigger anytime via GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,13 +21,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
+      - name: Setup Gradle 8.4
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.4'
 
-      - name: Accept Android SDK Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+      - name: Set Android SDK location & Accept Licenses
+        run: |
+          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Prepare Offline Web Assets for APK
         run: |
@@ -38,7 +40,7 @@ jobs:
 
       - name: Build Standalone Debug APK
         working-directory: android
-        run: gradle assembleDebug --stacktrace
+        run: gradle assembleDebug --stacktrace --info
 
       - name: Upload Installable APK Artifact
         uses: actions/upload-artifact@v4
