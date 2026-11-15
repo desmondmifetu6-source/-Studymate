@@ -35,14 +35,23 @@ jobs:
         run: |
           mkdir -p android/app/src/main/assets/www
           cp index.html styles.css app.js manifest.json icon.svg lottie.min.js android/app/src/main/assets/www/
-          cp -r *.json *.png *.jpg *.webm android/app/src/main/assets/www/ 2>/dev/null || true
+          find . -maxdepth 1 -type f \( -name "*.json" -o -name "*.png" -o -name "*.jpg" -o -name "*.webm" \) -exec cp {} android/app/src/main/assets/www/ \;
           ls -la android/app/src/main/assets/www/
 
       - name: Build Standalone Debug APK
         working-directory: android
-        run: gradle assembleDebug --stacktrace --info
+        run: |
+          gradle assembleDebug --stacktrace > build.log 2>&1 || (cat build.log | tail -n 120 && exit 1)
+
+      - name: Upload Build Log if Failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build-Error-Log
+          path: android/build.log
 
       - name: Upload Installable APK Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: StudyMate-GH-Android-APK
