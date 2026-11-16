@@ -1,7 +1,7 @@
 // StudyMate GH - Offline-First Service Worker
-// v7: Full Mobile Overhaul & Contrast Optimization
-const CACHE_NAME = 'studymate-gh-v7';
-const APP_VERSION = '1.2.0'; // bump this string on every release
+// v8: About Page Author & Co-Engineer Update
+const CACHE_NAME = 'studymate-gh-v8';
+const APP_VERSION = '1.2.1'; // bump this string on every release
 
 const ASSETS_TO_CACHE = [
   './',
