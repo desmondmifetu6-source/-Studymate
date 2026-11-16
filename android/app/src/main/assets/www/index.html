@@ -88,7 +88,7 @@
             <div class="form-field-group">
               <label class="field-label">What is your program or track?</label>
               <div class="chip-options-grid" id="program-track-chips">
-                <button type="button" class="select-chip active" data-track="General Science">General Science</button>
+                <button type="button" class="select-chip" data-track="General Science">General Science</button>
                 <button type="button" class="select-chip" data-track="General Arts">General Arts</button>
                 <button type="button" class="select-chip" data-track="Business">Business</button>
                 <button type="button" class="select-chip" data-track="Visual Arts">Visual Arts</button>
@@ -101,7 +101,7 @@
             <div class="form-field-group">
               <label for="intro-subjects-input" class="field-label">Your main subjects (comma separated):</label>
               <input type="text" id="intro-subjects-input" class="input-liquid"
-                value="Core Mathematics, Integrated Science, English Language, Social Studies, Elective Mathematics, Physics, Chemistry, Biology">
+                placeholder="e.g. Core Mathematics, English Language, Physics, Economics">
               <span class="field-hint">You can add, edit, or remove subjects anytime later.</span>
             </div>
 
@@ -437,10 +437,13 @@
                 <img src="icon.svg" alt="Achimota School Crest" class="about-crest-img">
               </div>
               <div style="display: flex; justify-content: center; margin-bottom: 8px;">
-                <span class="item-tag tag-blue" style="font-size: 0.72rem; padding: 3px 12px; letter-spacing: 0.04em;">🏛️ ACHIMOTA ADMINISTRATION &bull; MOTOWN</span>
+                <span class="item-tag tag-blue"
+                  style="font-size: 0.72rem; padding: 3px 12px; letter-spacing: 0.04em;">🏛️ ACHIMOTA ADMINISTRATION
+                  &bull; MOTOWN</span>
               </div>
               <h2 class="about-hero-title">StudyMate</h2>
-              <p class="about-hero-sub">"Ut Omnes Unum Sint" &mdash; Crafted with passion for Ghanaian students aiming for academic excellence.</p>
+              <p class="about-hero-sub">"Ut Omnes Unum Sint" &mdash; Crafted with passion for Ghanaian students aiming
+                for academic excellence.</p>
               <div class="about-hero-badges">
                 <span class="item-tag tag-blue">v1.0</span>
                 <span class="item-tag tag-green">100% Offline</span>
@@ -990,6 +993,23 @@
       <p class="celebration-desc" id="celebration-task-title">Great work on finishing your task.</p>
       <button type="button" class="btn-liquid btn-liquid-primary"
         style="margin-top: 14px; padding: 7px 22px; font-size: 0.85rem;" id="btn-close-celebration">Continue</button>
+    </div>
+  </div>
+
+  <!-- ══ UPDATE NOTIFICATION BANNER ══ -->
+  <div id="update-banner" class="update-banner" style="display:none;" role="alert" aria-live="polite">
+    <div class="update-banner-inner">
+      <div class="update-banner-left">
+        <span class="update-banner-icon">🎉</span>
+        <div>
+          <div class="update-banner-title">New Update Available!</div>
+          <div class="update-banner-sub">StudyMate has been updated with new improvements.</div>
+        </div>
+      </div>
+      <div class="update-banner-actions">
+        <button id="btn-update-refresh" class="btn-update-refresh">Refresh Now</button>
+        <button id="btn-update-dismiss" class="btn-update-dismiss" title="Dismiss">✕</button>
+      </div>
     </div>
   </div>
 

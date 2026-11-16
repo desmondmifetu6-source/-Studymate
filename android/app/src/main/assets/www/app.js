@@ -105,15 +105,18 @@
     const viewIntro = document.getElementById('view-intro');
     const viewDash = document.getElementById('view-dashboard');
     const userLabel = document.getElementById('header-user-label');
+    const btnProfile = document.getElementById('btn-header-profile');
 
     if (!state.user.isSetupComplete) {
       if (viewIntro) viewIntro.style.display = 'block';
       if (viewDash) viewDash.style.display = 'none';
       if (userLabel) userLabel.textContent = 'Setup';
+      if (btnProfile) btnProfile.style.display = 'none';
     } else {
       if (viewIntro) viewIntro.style.display = 'none';
       if (viewDash) viewDash.style.display = 'flex';
       if (userLabel) userLabel.textContent = state.user.name || 'Profile';
+      if (btnProfile) btnProfile.style.display = 'inline-flex';
       updateSubjectDatalists();
       renderDashboard();
     }
@@ -2070,14 +2073,72 @@
     updateTimerDisplay();
   }
 
-  function registerServiceWorker() {
-    if ('serviceWorker' in navigator && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
-      navigator.serviceWorker.register('./sw.js').then((reg) => {
-        console.log('[StudyMate] Offline Service Worker registered:', reg.scope);
-      }).catch((err) => {
-        console.warn('[StudyMate] Service Worker registration failed:', err);
+  /* ── UPDATE NOTIFICATION SYSTEM ──────────────────────────────────────── */
+  let _swWaitingReg = null;
+
+  function showUpdateBanner() {
+    const banner = document.getElementById('update-banner');
+    if (!banner) return;
+    banner.style.display = 'block';
+    // Force reflow so transition plays
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => banner.classList.add('visible'));
+    });
+
+    document.getElementById('btn-update-refresh').addEventListener('click', () => {
+      if (_swWaitingReg && _swWaitingReg.waiting) {
+        // Tell the waiting SW to take over
+        _swWaitingReg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      }
+      // Reload once the new SW activates
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
       });
-    }
+    });
+
+    document.getElementById('btn-update-dismiss').addEventListener('click', () => {
+      banner.classList.remove('visible');
+      setTimeout(() => { banner.style.display = 'none'; }, 400);
+    });
+  }
+
+  function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') return;
+
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
+      console.log('[StudyMate] Service Worker registered:', reg.scope);
+
+      // Case 1: a new SW is already waiting when the page loads
+      if (reg.waiting) {
+        _swWaitingReg = reg;
+        showUpdateBanner();
+      }
+
+      // Case 2: a new SW starts installing after page load
+      reg.addEventListener('updatefound', () => {
+        const newWorker = reg.installing;
+        if (!newWorker) return;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // New SW is installed & waiting — old SW still in control
+            _swWaitingReg = reg;
+            showUpdateBanner();
+          }
+        });
+      });
+
+    }).catch((err) => {
+      console.warn('[StudyMate] Service Worker registration failed:', err);
+    });
+
+    // Case 3: SW activated after a SKIP_WAITING — listen for controllerchange
+    // (reload is handled by the btn-update-refresh click handler above)
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SW_ACTIVATED') {
+        console.log('[StudyMate] New SW activated, version:', event.data.version);
+      }
+    });
   }
 
   function init() {

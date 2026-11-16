@@ -105,15 +105,18 @@
     const viewIntro = document.getElementById('view-intro');
     const viewDash = document.getElementById('view-dashboard');
     const userLabel = document.getElementById('header-user-label');
+    const btnProfile = document.getElementById('btn-header-profile');
 
     if (!state.user.isSetupComplete) {
       if (viewIntro) viewIntro.style.display = 'block';
       if (viewDash) viewDash.style.display = 'none';
       if (userLabel) userLabel.textContent = 'Setup';
+      if (btnProfile) btnProfile.style.display = 'none';
     } else {
       if (viewIntro) viewIntro.style.display = 'none';
       if (viewDash) viewDash.style.display = 'flex';
       if (userLabel) userLabel.textContent = state.user.name || 'Profile';
+      if (btnProfile) btnProfile.style.display = 'inline-flex';
       updateSubjectDatalists();
       renderDashboard();
     }
