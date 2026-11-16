@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    StudyMate - iPhone Liquidity UI Design System
    Minimalist Off-White Frosted Glassmorphism | Zero Glow | Full Fluid Layout
    ========================================================================== */
@@ -1030,7 +1030,7 @@ body {
   max-width: 360px;
 }
 
-/* Nuclear suppression — old illustration containers must NEVER render */
+/* Nuclear suppression â€” old illustration containers must NEVER render */
 .empty-state-illustration,
 .tab-illustration-capsule,
 .tab-illustration-img,
@@ -1175,7 +1175,7 @@ body {
 }
 
 .ios-checkbox.checked::after {
-  content: "✓";
+  content: "âœ“";
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
@@ -1907,104 +1907,97 @@ body {
   border-radius: var(--radius-lg, 16px);
 }
 
+
+
 /* ==========================================================================
-   MASTER-TIER MOBILE RESPONSIVE SYSTEM (iOS & Android Native Experience)
+   MASTER MOBILE RESPONSIVE SYSTEM — Single Source of Truth
+   Targets: iPhone SE (375px), iPhone 14 (390px), Android (360–412px)
    ========================================================================== */
 
-/* Day selector pill toggle */
+/* --- Desktop: show full day names, hide short --- */
 @media (min-width: 641px) {
-  .day-short {
-    display: none;
-  }
+  .day-short { display: none; }
 }
 
+/* --- Mobile: show short day names --- */
 @media (max-width: 640px) {
-  .day-full {
-    display: none;
-  }
-
-  .day-short {
-    display: inline;
-  }
+  .day-full { display: none; }
+  .day-short { display: inline; }
 }
 
-/* 1. Global Viewport & Flow Guards */
-html,
-body,
-.app-layout {
+/* --- Global overflow guards (all sizes) --- */
+html, body, .app-layout {
   overflow-x: hidden !important;
   max-width: 100vw !important;
 }
 
-/* 2. Mobile Responsive Rules (Screens <= 640px) */
+/* ============================================================
+   ALL MOBILE RULES  (≤ 640px)
+   ============================================================ */
 @media (max-width: 640px) {
 
-  /* Layout & Spacing */
+  /* ---- Layout ---- */
   .content-wrapper {
-    padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
+    padding: 12px 10px calc(76px + env(safe-area-inset-bottom, 0px)) 10px !important;
   }
 
-  /* Header */
+  /* ---- Header ---- */
   .app-header {
-    padding: 10px 14px !important;
+    padding: 10px 12px !important;
   }
-
+  .header-inner {
+    gap: 8px !important;
+  }
   .brand-group {
     gap: 8px !important;
   }
-
   .brand-mark {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 16px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
-
   .brand-text-title {
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
   }
-
   .brand-text-sub {
     display: none !important;
   }
-
   .header-controls {
     gap: 6px !important;
+    flex-shrink: 0 !important;
   }
-
   #btn-install-apk {
     padding: 6px 10px !important;
     font-size: 0.78rem !important;
   }
-
   #btn-install-apk .btn-apk-label {
     display: none !important;
   }
-
   #btn-header-profile {
     padding: 6px 10px !important;
     font-size: 0.78rem !important;
   }
-
   #header-user-label {
     display: none !important;
   }
 
-  /* Bottom Navigation: True Mobile App Tab Bar */
+  /* ---- Bottom Navigation Tab Bar (iOS-style) ---- */
   .segmented-nav-container {
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
+    top: auto !important;
     padding: 0 !important;
     z-index: 950 !important;
     pointer-events: auto !important;
-    background: rgba(255, 255, 255, 0.94) !important;
+    display: flex !important;
+    justify-content: stretch !important;
+    background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(24px) saturate(190%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
     border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
-    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.06) !important;
   }
-
   .segmented-nav {
     display: flex !important;
     width: 100% !important;
@@ -2013,837 +2006,292 @@ body,
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px)) 2px !important;
-    gap: 2px !important;
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)) 4px !important;
+    gap: 0 !important;
     justify-content: space-around !important;
-    overflow-x: hidden !important;
-  }
-
-  .segment-btn {
-    flex: 1 !important;
-    min-width: 0 !important;
-    padding: 5px 2px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 2px !important;
-    border-radius: 8px !important;
-    font-size: 0.65rem !important;
-    font-weight: 600 !important;
-    color: var(--text-secondary, #64748b) !important;
-  }
-
-  .segment-btn .nav-icon {
-    font-size: 1.15rem !important;
-    line-height: 1 !important;
-  }
-
-  .segment-btn .nav-label {
-    font-size: 0.64rem !important;
-    line-height: 1 !important;
-    letter-spacing: -0.01em !important;
-    white-space: nowrap !important;
-  }
-
-  .segment-btn.active {
-    background: rgba(15, 23, 42, 0.06) !important;
-    color: var(--text-primary, #0f172a) !important;
-    box-shadow: none !important;
-    font-weight: 700 !important;
-  }
-
-  /* Cards & Padding Reduction */
-  .liquid-card,
-  .liquid-assistant-card,
-  .intro-hero-card,
-  .backup-vault-card,
-  .install-apk-card {
-    padding: 16px 14px !important;
-    border-radius: var(--radius-md, 14px) !important;
-  }
-
-  .intro-container {
-    margin: 12px auto !important;
-  }
-
-  .intro-title {
-    font-size: 1.55rem !important;
-  }
-
-  /* Section Headers & Action Rows */
-  .section-header-row {
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    align-items: flex-start !important;
-  }
-
-  .section-title {
-    font-size: 1.05rem !important;
-  }
-
-  /* WASSCE Horizon Countdown */
-  .horizon-card {
-    padding: 16px 14px !important;
-  }
-
-  .horizon-countdown-row {
-    gap: 10px !important;
-  }
-
-  .horizon-big-num {
-    font-size: 2.7rem !important;
-  }
-
-  .horizon-metrics-row {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 6px !important;
-    text-align: center !important;
-    padding-top: 12px !important;
-  }
-
-  .horizon-metric-divider {
-    display: none !important;
-  }
-
-  .metric-val {
-    font-size: 0.8rem !important;
-  }
-
-  .metric-lbl {
-    font-size: 0.62rem !important;
-  }
-
-  /* Anti-Sack Kit Guardian */
-  .kit-card {
-    padding: 16px 14px !important;
-  }
-
-  .kit-item-row {
-    padding: 10px 0 !important;
-    gap: 8px !important;
-  }
-
-  .kit-item-name {
-    font-size: 0.82rem !important;
-  }
-
-  /* Timetable Day Chips */
-  #timetable-day-chips {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    gap: 6px !important;
-    padding: 4px 2px 8px 2px !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-  }
-
-  #timetable-day-chips::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  #timetable-day-chips .select-chip {
-    flex: 1 0 auto !important;
-    padding: 7px 11px !important;
-    font-size: 0.78rem !important;
-    text-align: center !important;
-  }
-
-  /* Modals: Convert to iOS / Android Bottom Sheets */
-  .liquid-modal-overlay {
-    align-items: flex-end !important;
-    padding: 0 !important;
-  }
-
-  .liquid-modal-content {
-    max-width: 100% !important;
-    width: 100% !important;
-    max-height: 86vh !important;
-    overflow-y: auto !important;
-    border-radius: 20px 20px 0 0 !important;
-    padding: 20px 16px calc(24px + env(safe-area-inset-bottom, 0px)) 16px !important;
-    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.15) !important;
-    transform: translateY(100%) !important;
-  }
-
-  .liquid-modal-overlay.active .liquid-modal-content {
-    transform: translateY(0) !important;
-  }
-
-  /* Inputs: 16px font prevents iOS Safari auto-zoom */
-  .input-liquid,
-  select.input-liquid,
-  textarea.input-liquid {
-    font-size: 16px !important;
-  }
-
-  /* Timer Display */
-  #timer-display {
-    font-size: 3.2rem !important;
-  }
-
-  /* Mascot Companion Card */
-  .mascot-companion-card {
-    padding: 14px !important;
-    gap: 12px !important;
-  }
-
-  .mascot-capsule {
-    width: 68px !important;
-    height: 68px !important;
-    min-width: 68px !important;
-    border-radius: 14px !important;
-  }
-
-  .mascot-speech-text {
-    font-size: 0.8rem !important;
-    line-height: 1.4 !important;
-  }
-
-  /* About Tab Cards */
-  .about-hero-banner {
-    padding: 24px 16px !important;
-  }
-
-  .about-hero-title {
-    font-size: 1.6rem !important;
-  }
-
-  .about-dev-card {
-    padding: 16px 14px !important;
-    gap: 12px !important;
-  }
-
-  .about-dev-avatar {
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    font-size: 1.1rem !important;
-  }
-
-  .about-tech-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-
-/* ==========================================================================
-   EXAM HORIZON (WASSCE / EXAM READINESS TRACKER) - Zero Neon, Pure Craft
-   ========================================================================== */
-.horizon-card {
-  background: var(--glass-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 26px 28px;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition-smooth);
-}
-
-.horizon-card:hover {
-  background: var(--surface-card);
-  box-shadow: var(--shadow-elevated);
-}
-
-.horizon-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.horizon-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.horizon-name {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  margin-top: 3px;
-}
-
-.btn-horizon-config {
-  background: rgba(15, 23, 42, 0.04);
-  border: 1px solid rgba(15, 23, 42, 0.09);
-  border-radius: var(--radius-pill);
-  padding: 5px 14px;
-  font-family: inherit;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.btn-horizon-config:hover {
-  background: rgba(15, 23, 42, 0.08);
-  color: var(--text-primary);
-  border-color: rgba(15, 23, 42, 0.16);
-}
-
-.horizon-days-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-top: 2px;
-}
-
-.horizon-big-num {
-  font-size: 3.8rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-  color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.horizon-days-label-group {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.horizon-days-unit {
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
-.horizon-date-target {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.horizon-progress-track {
-  width: 100%;
-  height: 5px;
-  background: rgba(15, 23, 42, 0.06);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.horizon-progress-bar {
-  height: 100%;
-  background: #0f172a;
-  border-radius: 999px;
-  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.horizon-metrics-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-  align-items: center;
-  gap: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(15, 23, 42, 0.06);
-}
-
-.horizon-metric {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.metric-val {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.metric-lbl {
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.horizon-metric-divider {
-  width: 1px;
-  height: 26px;
-  background: rgba(15, 23, 42, 0.08);
-}
-
-/* ==========================================================================
-   CLASS READY GUARDIAN (ESSENTIAL KIT CHECKLIST) - Never get sacked
-   ========================================================================== */
-.kit-card {
-  background: var(--glass-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 24px 28px;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: var(--transition-smooth);
-}
-
-.kit-card:hover {
-  background: var(--surface-card);
-  box-shadow: var(--shadow-elevated);
-}
-
-.kit-header-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.kit-eyebrow-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.kit-badge-shield {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  background: var(--tag-bg-blue);
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-}
-
-.kit-status-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  background: rgba(15, 23, 42, 0.05);
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
-  transition: var(--transition-smooth);
-}
-
-.kit-status-tag.all-packed {
-  background: var(--tag-bg-green);
-  color: var(--tag-text-green);
-}
-
-.kit-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-.kit-sub {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  margin-top: 3px;
-  line-height: 1.45;
-}
-
-.kit-items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.kit-item-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(15, 23, 42, 0.05);
-  transition: var(--transition-smooth);
-}
-
-.kit-item-row:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(15, 23, 42, 0.1);
-}
-
-.kit-item-row.packed {
-  opacity: 0.6;
-  background: rgba(248, 250, 252, 0.6);
-}
-
-.kit-item-row.packed .kit-item-name {
-  text-decoration: line-through;
-}
-
-.kit-item-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.kit-item-name {
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.kit-item-subject-tag {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
-   OFFLINE DATA VAULT & BACKUP STYLES
-   ========================================================================== */
-.backup-vault-card {
-  margin: 18px 0;
-  padding: 22px 24px;
-}
-
-/* ==========================================================================
-   STANDALONE APK INSTALLER STYLES
-   ========================================================================== */
-.install-apk-card {
-  margin: 18px 0;
-  padding: 22px 24px;
-  border-radius: var(--radius-lg, 16px);
-}
-
-/* ==========================================================================
-   MASTER-TIER MOBILE RESPONSIVE SYSTEM (iOS & Android Native Experience)
-   ========================================================================== */
-
-/* Day selector pill toggle */
-@media (min-width: 641px) {
-  .day-short {
-    display: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .day-full {
-    display: none;
-  }
-
-  .day-short {
-    display: inline;
-  }
-}
-
-/* 1. Global Viewport & Flow Guards */
-html,
-body,
-.app-layout {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
-}
-
-/* 2. Mobile Responsive Rules (Screens <= 640px) */
-@media (max-width: 640px) {
-
-  /* Layout & Spacing */
-  .content-wrapper {
-    padding: 14px 12px calc(80px + env(safe-area-inset-bottom, 0px)) 12px !important;
-  }
-
-  /* Header */
-  .app-header {
-    padding: 10px 14px !important;
-  }
-
-  .brand-group {
-    gap: 8px !important;
-  }
-
-  .brand-mark {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 16px !important;
-  }
-
-  .brand-text-title {
-    font-size: 1.05rem !important;
-  }
-
-  .brand-text-sub {
-    display: none !important;
-  }
-
-  .header-controls {
-    gap: 6px !important;
-  }
-
-  #btn-install-apk {
-    padding: 6px 10px !important;
-    font-size: 0.78rem !important;
-  }
-
-  #btn-install-apk .btn-apk-label {
-    display: none !important;
-  }
-
-  #btn-header-profile {
-    padding: 6px 10px !important;
-    font-size: 0.78rem !important;
-  }
-
-  #header-user-label {
-    display: none !important;
-  }
-
-  /* Bottom Navigation: True Mobile App Tab Bar */
-  .segmented-nav-container {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    padding: 0 !important;
-    z-index: 950 !important;
+    overflow: visible !important;
     pointer-events: auto !important;
-    background: rgba(255, 255, 255, 0.94) !important;
-    backdrop-filter: blur(24px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-    border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
-    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.04) !important;
   }
-
-  .segmented-nav {
-    display: flex !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    border-radius: 0 !important;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px)) 2px !important;
-    gap: 2px !important;
-    justify-content: space-around !important;
-    overflow-x: hidden !important;
-  }
-
   .segment-btn {
     flex: 1 !important;
     min-width: 0 !important;
-    padding: 5px 2px !important;
+    padding: 4px 2px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 2px !important;
-    border-radius: 8px !important;
-    font-size: 0.65rem !important;
+    border-radius: 10px !important;
+    font-size: 0.6rem !important;
     font-weight: 600 !important;
     color: var(--text-secondary, #64748b) !important;
+    white-space: normal !important;
   }
-
   .segment-btn .nav-icon {
-    font-size: 1.15rem !important;
+    font-size: 1.2rem !important;
     line-height: 1 !important;
+    display: block !important;
   }
-
   .segment-btn .nav-label {
-    font-size: 0.64rem !important;
-    line-height: 1 !important;
-    letter-spacing: -0.01em !important;
+    font-size: 0.6rem !important;
+    line-height: 1.2 !important;
     white-space: nowrap !important;
+    display: block !important;
   }
-
   .segment-btn.active {
-    background: rgba(15, 23, 42, 0.06) !important;
+    background: rgba(15, 23, 42, 0.07) !important;
     color: var(--text-primary, #0f172a) !important;
     box-shadow: none !important;
     font-weight: 700 !important;
   }
 
-  /* Cards & Padding Reduction */
+  /* ---- Dashboard gap ---- */
+  .dashboard-view {
+    gap: 16px !important;
+  }
+
+  /* ---- Cards ---- */
   .liquid-card,
   .liquid-assistant-card,
-  .intro-hero-card,
   .backup-vault-card,
   .install-apk-card {
     padding: 16px 14px !important;
-    border-radius: var(--radius-md, 14px) !important;
+    border-radius: 16px !important;
   }
 
+  /* ---- Intro / Setup Screen ---- */
   .intro-container {
-    margin: 12px auto !important;
+    margin: 10px auto !important;
+    max-width: 100% !important;
   }
-
+  .intro-hero-card {
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+  }
   .intro-title {
-    font-size: 1.55rem !important;
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
+  }
+  .intro-subtitle {
+    font-size: 0.88rem !important;
+  }
+  .intro-form {
+    margin-top: 20px !important;
+    gap: 16px !important;
+  }
+  .intro-mascot-wrapper {
+    margin-bottom: 16px !important;
+  }
+  .mascot-capsule-mini {
+    width: 110px !important;
+    height: 110px !important;
+    border-radius: 20px !important;
+  }
+  .btn-start-workspace {
+    width: 100% !important;
+    padding: 14px 20px !important;
+    font-size: 0.95rem !important;
   }
 
-  /* Section Headers & Action Rows */
+  /* ---- Chip grids ---- */
+  .chip-options-grid {
+    gap: 6px !important;
+  }
+  .select-chip {
+    padding: 7px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* ---- Section headers ---- */
   .section-header-row {
     flex-wrap: wrap !important;
-    gap: 10px !important;
+    gap: 8px !important;
     align-items: flex-start !important;
   }
-
   .section-title {
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
   }
 
-  /* WASSCE Horizon Countdown */
-  .horizon-card {
+  /* ---- Assistant Card ---- */
+  .liquid-assistant-card {
     padding: 16px 14px !important;
+    gap: 12px !important;
   }
-
-  .horizon-countdown-row {
-    gap: 10px !important;
+  .assistant-user-greeting {
+    font-size: 1.3rem !important;
   }
-
-  .horizon-big-num {
-    font-size: 2.7rem !important;
+  .assistant-copilot-tag {
+    font-size: 0.68rem !important;
+    padding: 3px 9px !important;
   }
-
-  .horizon-metrics-row {
-    grid-template-columns: repeat(3, 1fr) !important;
+  .assistant-top-row {
+    flex-wrap: wrap !important;
     gap: 6px !important;
-    text-align: center !important;
-    padding-top: 12px !important;
   }
-
-  .horizon-metric-divider {
-    display: none !important;
-  }
-
-  .metric-val {
-    font-size: 0.8rem !important;
-  }
-
-  .metric-lbl {
-    font-size: 0.62rem !important;
-  }
-
-  /* Anti-Sack Kit Guardian */
-  .kit-card {
-    padding: 16px 14px !important;
-  }
-
-  .kit-item-row {
-    padding: 10px 0 !important;
+  .quick-action-strip {
     gap: 8px !important;
   }
+  .quick-action-strip .btn-liquid {
+    flex: 1 1 auto !important;
+    font-size: 0.78rem !important;
+    padding: 8px 10px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
 
-  .kit-item-name {
+  /* ---- Mascot companion card ---- */
+  .mascot-companion-card {
+    padding: 14px 14px !important;
+    gap: 12px !important;
+    flex-wrap: nowrap !important;
+  }
+  .mascot-capsule {
+    width: 72px !important;
+    height: 72px !important;
+    min-width: 72px !important;
+    border-radius: 14px !important;
+  }
+  .mascot-speech-bubble p {
     font-size: 0.82rem !important;
   }
 
-  /* Timetable Day Chips */
+  /* ---- Exam Horizon ---- */
+  .horizon-card {
+    padding: 16px 14px !important;
+  }
+  .horizon-big-num {
+    font-size: 2.4rem !important;
+  }
+  .horizon-metrics-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    text-align: center !important;
+    padding-top: 10px !important;
+  }
+  .horizon-metric-divider {
+    display: none !important;
+  }
+  .metric-val {
+    font-size: 0.82rem !important;
+  }
+  .metric-lbl {
+    font-size: 0.6rem !important;
+  }
+
+  /* ---- Kit Guardian ---- */
+  .kit-card {
+    padding: 16px 14px !important;
+  }
+  .kit-header-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  /* ---- Timetable day chips scroll ---- */
   #timetable-day-chips {
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
     gap: 6px !important;
-    padding: 4px 2px 8px 2px !important;
+    padding: 4px 2px 10px 2px !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
   }
-
   #timetable-day-chips::-webkit-scrollbar {
     display: none !important;
   }
-
   #timetable-day-chips .select-chip {
-    flex: 1 0 auto !important;
+    flex: 0 0 auto !important;
     padding: 7px 11px !important;
-    font-size: 0.78rem !important;
-    text-align: center !important;
+    font-size: 0.75rem !important;
   }
 
-  /* Modals: Convert to iOS / Android Bottom Sheets */
+  /* ---- Focus / Prep Timer ---- */
+  #timer-display {
+    font-size: 3rem !important;
+  }
+  .timer-mascot-capsule {
+    width: 140px !important;
+    height: 120px !important;
+  }
+
+  /* ---- About Tab ---- */
+  .about-hero-banner {
+    padding: 22px 14px !important;
+    min-height: auto !important;
+  }
+  .about-hero-title {
+    font-size: 1.5rem !important;
+  }
+  .about-dev-card {
+    padding: 14px !important;
+    gap: 10px !important;
+  }
+  .about-dev-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    font-size: 1rem !important;
+  }
+  .about-tech-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .install-apk-card {
+    padding: 16px 14px !important;
+  }
+
+  /* ---- Modals → Bottom Sheets ---- */
   .liquid-modal-overlay {
     align-items: flex-end !important;
     padding: 0 !important;
   }
-
   .liquid-modal-content {
     max-width: 100% !important;
     width: 100% !important;
-    max-height: 86vh !important;
+    max-height: 88vh !important;
     overflow-y: auto !important;
     border-radius: 20px 20px 0 0 !important;
     padding: 20px 16px calc(24px + env(safe-area-inset-bottom, 0px)) 16px !important;
     box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.15) !important;
     transform: translateY(100%) !important;
   }
-
   .liquid-modal-overlay.active .liquid-modal-content {
     transform: translateY(0) !important;
   }
 
-  /* Inputs: 16px font prevents iOS Safari auto-zoom */
+  /* ---- Inputs: prevent iOS Safari zoom on focus ---- */
   .input-liquid,
   select.input-liquid,
   textarea.input-liquid {
     font-size: 16px !important;
   }
 
-  /* Timer Display */
-  #timer-display {
-    font-size: 3.2rem !important;
+  /* ---- Buttons ---- */
+  .btn-liquid {
+    min-height: 40px !important;
   }
+}
 
-  /* Mascot Companion Card */
-  .mascot-companion-card {
-    padding: 14px !important;
-    gap: 12px !important;
+/* ---- Very small phones (≤ 380px) ---- */
+@media (max-width: 380px) {
+  .intro-hero-card {
+    padding: 16px 12px !important;
   }
-
-  .mascot-capsule {
-    width: 68px !important;
-    height: 68px !important;
-    min-width: 68px !important;
-    border-radius: 14px !important;
+  .intro-title {
+    font-size: 1.3rem !important;
   }
-
-  .mascot-speech-text {
-    font-size: 0.8rem !important;
-    line-height: 1.4 !important;
+  .mascot-capsule-mini {
+    width: 90px !important;
+    height: 90px !important;
   }
-
-  /* About Tab Cards */
-  .about-hero-banner {
-    padding: 24px 16px !important;
+  .segment-btn .nav-label {
+    font-size: 0.55rem !important;
   }
-
-  .about-hero-title {
-    font-size: 1.6rem !important;
+  .assistant-user-greeting {
+    font-size: 1.15rem !important;
   }
-
-  .about-dev-card {
-    padding: 16px 14px !important;
-    gap: 12px !important;
-  }
-
-  .about-dev-avatar {
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    font-size: 1.1rem !important;
-  }
-
-  .about-tech-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .horizon-big-num {
+    font-size: 2rem !important;
   }
 }
